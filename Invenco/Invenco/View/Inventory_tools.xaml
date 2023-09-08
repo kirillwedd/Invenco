@@ -1,0 +1,101 @@
+﻿<Window x:Class="Invenco.View.Inventory_tools"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Invenco.View"
+        mc:Ignorable="d"
+        Title="Inventory_tools" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="450" Width="800">
+    <Grid x:Name="Grid_BackGround">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+        </Grid>
+
+
+
+        <StackPanel Width="Auto" Height="Auto" VerticalAlignment="Top" ClipToBounds="True"
+                    Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" >
+
+            <Button x:Name="Roll_up_Bt" Width="25" Height="20" Style="{StaticResource Roll_Up_Menu}"  Click="Roll_up_Bt_Click"/>
+
+            <Button x:Name="Deployment_Icon" Width="25"   Style="{StaticResource Unwrap_Menu}"  Height="20" Click="Deployment_Icon_Click"/>
+
+            <Button x:Name="ClosesBt" Background="Transparent" Style="{StaticResource TopMenu}" Height="20" BorderBrush="Transparent" Width="25"
+                    HorizontalAlignment="Right" Click="ClosesBt_Click"/>
+
+        </StackPanel>
+
+        <Border Background="#FF657DD0" Width="Auto" HorizontalAlignment="Left">
+            <DockPanel>
+                <Border DockPanel.Dock="Top"  HorizontalAlignment="Center" Padding="3" Background="White" CornerRadius="100"
+                        Width="120" Height="120" VerticalAlignment="Top" >
+                    
+                    <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="PhotoEllipse" ImageSource="{Icon:MaterialDesignImage Kind=PhotoCamera, Brush=Gray}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+               
+                </Border>
+
+                <TextBlock x:Name="FullName_tb"  Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"/>
+                <TextBlock x:Name="FullPatronymic" Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"  />
+
+                <Separator  DockPanel.Dock="Top" Height="0.8"  />
+
+                <StackPanel DockPanel.Dock="Top">
+                    <Button x:Name="Invertarization_Btn" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
+                        <StackPanel x:Name="Menu_Profile" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Инвентаризация" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <Button x:Name="Invertarization_Btns" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
+                        <StackPanel x:Name="Menu_Profile1" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="MapMarker"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Карта" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom">
+                    <Button x:Name="Invertarization_Btns1" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
+                        <StackPanel x:Name="Menu_Profile2" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Close"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Выход" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+
+
+            </DockPanel>
+
+        </Border>
+        <materialDesign:Badged Grid.Column="1" Content="Badged" Margin="757,265,0,0"/>
+
+
+
+
+    </Grid>
+</Window>
