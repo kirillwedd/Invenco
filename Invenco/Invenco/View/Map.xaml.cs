@@ -13,8 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsPresentation;
 using Newtonsoft.Json;
-using Invenco.JSONClass;
+using GMap.NET;
+using System.Windows.Forms;
+using Microsoft.Web.WebView2.WinForms;
+using System.Security.Cryptography.X509Certificates;
+using GMap.NET.WindowsForms.Markers;
+using Invenco.ClassTransmitted;
+using MahApps.Metro.Controls;
 
 namespace Invenco.View
 {
@@ -23,7 +31,8 @@ namespace Invenco.View
     /// </summary>
     public partial class Map : Window
     {
-      
+     
+        
         public Map()
         {
             InitializeComponent();
@@ -51,40 +60,55 @@ namespace Invenco.View
         {
 
         }
-
+        
         private void EllipcePhoto_MouseDown(object sender, MouseButtonEventArgs e)
         {
            
         }
 
-       
-
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        private void GMapControl_Loaded(object sender, RoutedEventArgs e)
         {
-            await Maps.EnsureCoreWebView2Async(null);
-
-            Maps.CoreWebView2.NavigationCompleted += Maps_NavigationCompleted;
-          
-            Maps.CoreWebView2.WebMessageReceived += Maps_WebMessageReceived;
-        }
-
-        private async void Maps_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
-        {
-            await Maps.CoreWebView2.ExecuteScriptAsync
-                ("var marker = new google.maps.Marker({position: {lat: 51.5074, lng: -0.1278}, map: map, title: 'London'})");
-        }
-
-        private void Maps_WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
-        {
-            var message = JsonSerializer.Deserialize<MyLocation>(e.TryGetWebMessageAsString());
-
-            double latitude = message.Latitude;
-            double longitude = message.Longitude;
-          
-
 
         }
 
-       
+        private void Maps_Loaded(object sender, RoutedEventArgs e)
+        {
+            Maps.MinZoom = 5;
+            Maps.MaxZoom = 20;
+            Maps.Zoom = 15;
+            Maps.MapProvider = GMapProviders.GoogleMap;
+            Maps.DragButton = MouseButton.Left;
+            Maps.Position =new PointLatLng(55.344181, 61.338637);
+            GMapProvider.Language = LanguageType.Russian;
+
+            
+
+           
+            
+        }
+
+        private void Maps_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ChangedButton==MouseButton.Right)
+            {
+               
+                double X = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lng;
+                double Y = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lat;
+            
+                System.Windows.MessageBox.Show($"Координаты: {Math.Round(Y, 6)}, {Math.Round(X, 6)}", "Координаты");
+
+                Coordinates.Y = Y;
+                Coordinates.X = X;
+
+                
+            }
+
+            if(e.ChangedButton==MouseButton.Left)
+            {
+                 GMapMarker gMarker = new GMapMarker(new PointLatLng(Coordinates.Y, Coordinates.X));
+                 Maps.Markers.Add(gMarker);
+                
+            }
+        }
     }
 }

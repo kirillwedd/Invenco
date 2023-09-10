@@ -56,6 +56,7 @@ namespace Invenco.View
             {
                 PhotoEllipse.ImageSource = new BitmapImage(new Uri(create.FileName));
                 ImageTransmitted.Image = PhotoEllipse.ImageSource;
+                
 
             }
             new PictureEditor().Show();
