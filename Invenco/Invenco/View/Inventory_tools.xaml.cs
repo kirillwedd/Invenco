@@ -60,6 +60,7 @@ namespace Invenco.View
 
             }
             new PictureEditor().Show();
+            
         }
 
         private void Invertarization_Btn_Click(object sender, RoutedEventArgs e)

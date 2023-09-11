@@ -23,6 +23,7 @@ using System.Security.Cryptography.X509Certificates;
 using GMap.NET.WindowsForms.Markers;
 using Invenco.ClassTransmitted;
 using MahApps.Metro.Controls;
+using MaterialDesignThemes.Wpf;
 
 namespace Invenco.View
 {
@@ -36,8 +37,10 @@ namespace Invenco.View
         public Map()
         {
             InitializeComponent();
-            
            
+          
+
+
 
         }
 
@@ -74,12 +77,14 @@ namespace Invenco.View
         private void Maps_Loaded(object sender, RoutedEventArgs e)
         {
             Maps.MinZoom = 5;
-            Maps.MaxZoom = 20;
+            Maps.MaxZoom = 30;
             Maps.Zoom = 15;
             Maps.MapProvider = GMapProviders.GoogleMap;
             Maps.DragButton = MouseButton.Left;
             Maps.Position =new PointLatLng(55.344181, 61.338637);
             GMapProvider.Language = LanguageType.Russian;
+           
+          
 
             
 
@@ -87,27 +92,44 @@ namespace Invenco.View
             
         }
 
-        private void Maps_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        
+
+        private void Maps_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.ChangedButton==MouseButton.Right)
+            if (e.ChangedButton == MouseButton.Right)
             {
-               
+
                 double X = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lng;
                 double Y = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lat;
-            
-                System.Windows.MessageBox.Show($"Координаты: {Math.Round(Y, 6)}, {Math.Round(X, 6)}", "Координаты");
 
-                Coordinates.Y = Y;
-                Coordinates.X = X;
-
+                double TransmittedX=Math.Round(X, 6);
+                double TransmittedY=Math.Round(Y, 6);
                 
+
+                Coordinates.Y = TransmittedY;
+                Coordinates.X = TransmittedX;
+
             }
+        }
 
-            if(e.ChangedButton==MouseButton.Left)
+        private void Maps_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
             {
-                 GMapMarker gMarker = new GMapMarker(new PointLatLng(Coordinates.Y, Coordinates.X));
-                 Maps.Markers.Add(gMarker);
                 
+                GMapMarker gMarker = new GMapMarker(new PointLatLng(Coordinates.Y, Coordinates.X));
+
+                
+                gMarker.Shape = new Image()
+                {
+                    Source = new BitmapImage(new Uri("C:\\Users\\1\\Desktop\\Pet_Project\\Invenco\\Invenco\\Image\\MarkerCheck.png")),
+                    Width = 20,
+                    Height = 20,
+                    ToolTip = "Метка",
+                    Visibility = Visibility.Visible
+
+                };
+                Maps.Markers.Add(gMarker);
             }
         }
     }

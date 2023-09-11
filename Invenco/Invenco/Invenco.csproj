@@ -328,6 +328,9 @@
   <ItemGroup>
     <None Include="Image\QR_Code_icon_Main" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\MarkerCheck.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

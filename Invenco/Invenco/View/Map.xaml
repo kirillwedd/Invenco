@@ -14,6 +14,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
+          
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1">
@@ -24,10 +25,10 @@
             </Grid.RowDefinitions>
         </Grid>
 
-        <gmaps:GMapControl Grid.Column="1" x:Name="Maps" Loaded="Maps_Loaded" MouseDoubleClick="Maps_MouseDoubleClick" />
+        <gmaps:GMapControl Grid.Column="1" x:Name="Maps" Loaded="Maps_Loaded" MouseDown="Maps_MouseDown" MouseUp="Maps_MouseUp" />
 
         <StackPanel Width="Auto" Height="Auto" VerticalAlignment="Top" ClipToBounds="True"
-                    Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" >
+                    Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" >
 
             <Button x:Name="Roll_up_Bt" Width="25" Height="20" Style="{StaticResource Roll_Up_Menu}"  Click="Roll_up_Bt_Click"/>
 
@@ -37,6 +38,10 @@
                     HorizontalAlignment="Right" Click="ClosesBt_Click"/>
 
         </StackPanel>
+
+       
+
+
 
         <Border Background="#FF657DD0" Width="Auto" HorizontalAlignment="Left">
             <DockPanel>
@@ -67,6 +72,7 @@
 
                         </StackPanel>
                     </Button>
+                    
 
 
                    
