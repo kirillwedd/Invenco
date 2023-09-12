@@ -1,0 +1,38 @@
+Create table Person_data (
+PersonID  int Not NUll Primary key Identity,
+Login nvarchar(MAX) Not Null,
+Password nvarchar(MAX) Not Null,
+Name nvarchar(MAX) Null,
+LastName nvarchar(MAX) Null,
+Patronymic nvarchar(MAX) Null)
+
+Create table Markers(
+MarkerID int Not NUll Primary key Identity,
+Latitude Float Not NUll,
+Longitude Float Not Null,
+Name NVARCHAR(Max) NUll)
+
+
+Create table Invertarization(
+InvertNumber int Not Null Primary key,
+name nvarchar(MAX) Not Null,
+Category nvarchar(MAX) Not NUll,
+StartDate date Not Null,
+cabinet nvarchar(MAX),
+EndDate date Null,
+WrittenOff bit)  
+
+Create table Category(
+CategoryId int Primary key Not null,
+CategoryName nvarchar(MAX) Not Null)
+
+Create table InventoryStatus(
+IdStatusWritten int Primary key Identity Not Null,
+StatusName nvarchar(MAX) Not Null)
+
+Create table MovomentLog(
+IdMovomentLog int Not Null  Primary key,
+Where_from nvarchar(MAX) Not Null,
+Where_to nvarchar(MAX) Not Null,
+DateMov date Not NUll,
+InvertNumber int foreign key References Invertarization(InvertNumber))
