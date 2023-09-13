@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище PETBASEModelContainer" CdmEntityContainer="PETBASEEntities">
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="PETBASEModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryStatus">
+      <EntityTypeMapping TypeName="PETBASEModel.InventoryStatus">
+        <MappingFragment StoreEntitySet="InventoryStatus">
+          <ScalarProperty Name="IdStatusWritten" ColumnName="IdStatusWritten" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invertarization">
+      <EntityTypeMapping TypeName="PETBASEModel.Invertarization">
+        <MappingFragment StoreEntitySet="Invertarization">
+          <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
+          <ScalarProperty Name="MarkersID" ColumnName="MarkersID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="cabinet" ColumnName="cabinet" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="WrittenOff" ColumnName="WrittenOff" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Markers">
+      <EntityTypeMapping TypeName="PETBASEModel.Markers">
+        <MappingFragment StoreEntitySet="Markers">
+          <ScalarProperty Name="MarkerID" ColumnName="MarkerID" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovomentLog">
+      <EntityTypeMapping TypeName="PETBASEModel.MovomentLog">
+        <MappingFragment StoreEntitySet="MovomentLog">
+          <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
+          <ScalarProperty Name="Where_from" ColumnName="Where_from" />
+          <ScalarProperty Name="Where_to" ColumnName="Where_to" />
+          <ScalarProperty Name="DateMov" ColumnName="DateMov" />
+          <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Person_data">
+      <EntityTypeMapping TypeName="PETBASEModel.Person_data">
+        <MappingFragment StoreEntitySet="Person_data">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PETBASEModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PETBASEModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryStatus">
+          <Key>
+            <PropertyRef Name="IdStatusWritten" />
+          </Key>
+          <Property Name="IdStatusWritten" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invertarization">
+          <Key>
+            <PropertyRef Name="InvertNumber" />
+            <PropertyRef Name="MarkersID" />
+          </Key>
+          <Property Name="InvertNumber" Type="int" Nullable="false" />
+          <Property Name="MarkersID" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="cabinet" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="WrittenOff" Type="bit" />
+          <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Markers">
+          <Key>
+            <PropertyRef Name="MarkerID" />
+          </Key>
+          <Property Name="MarkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MovomentLog">
+          <Key>
+            <PropertyRef Name="IdMovomentLog" />
+          </Key>
+          <Property Name="IdMovomentLog" Type="int" Nullable="false" />
+          <Property Name="Where_from" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Where_to" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateMov" Type="date" Nullable="false" />
+          <Property Name="InvertNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="Person_data">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Patronymic" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Invertarization_Markers1">
+          <End Role="Markers" Type="Self.Markers" Multiplicity="1" />
+          <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Markers">
+              <PropertyRef Name="MarkerID" />
+            </Principal>
+            <Dependent Role="Invertarization">
+              <PropertyRef Name="MarkersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invertarization_MovomentLog">
+          <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="1" />
+          <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovomentLog">
+              <PropertyRef Name="IdMovomentLog" />
+            </Principal>
+            <Dependent Role="Invertarization">
+              <PropertyRef Name="InvertNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PETBASEModelContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryStatus" EntityType="Self.InventoryStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invertarization" EntityType="Self.Invertarization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Markers" EntityType="Self.Markers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovomentLog" EntityType="Self.MovomentLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_data" EntityType="Self.Person_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Invertarization_Markers1" Association="Self.FK_Invertarization_Markers1">
+            <End Role="Markers" EntitySet="Markers" />
+            <End Role="Invertarization" EntitySet="Invertarization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invertarization_MovomentLog" Association="Self.FK_Invertarization_MovomentLog">
+            <End Role="MovomentLog" EntitySet="MovomentLog" />
+            <End Role="Invertarization" EntitySet="Invertarization" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PETBASEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryStatus">
+          <Key>
+            <PropertyRef Name="IdStatusWritten" />
+          </Key>
+          <Property Name="IdStatusWritten" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invertarization">
+          <Key>
+            <PropertyRef Name="InvertNumber" />
+            <PropertyRef Name="MarkersID" />
+          </Key>
+          <Property Name="InvertNumber" Type="Int32" Nullable="false" />
+          <Property Name="MarkersID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="WrittenOff" Type="Boolean" />
+          <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Markers" Relationship="Self.FK_Invertarization_Markers1" FromRole="Invertarization" ToRole="Markers" />
+          <NavigationProperty Name="MovomentLog" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="Invertarization" ToRole="MovomentLog" />
+        </EntityType>
+        <EntityType Name="Markers">
+          <Key>
+            <PropertyRef Name="MarkerID" />
+          </Key>
+          <Property Name="MarkerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Invertarization" Relationship="Self.FK_Invertarization_Markers1" FromRole="Markers" ToRole="Invertarization" />
+        </EntityType>
+        <EntityType Name="MovomentLog">
+          <Key>
+            <PropertyRef Name="IdMovomentLog" />
+          </Key>
+          <Property Name="IdMovomentLog" Type="Int32" Nullable="false" />
+          <Property Name="Where_from" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Where_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateMov" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InvertNumber" Type="Int32" />
+          <NavigationProperty Name="Invertarization" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="MovomentLog" ToRole="Invertarization" />
+        </EntityType>
+        <EntityType Name="Person_data">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Invertarization_Markers1">
+          <End Role="Markers" Type="Self.Markers" Multiplicity="1" />
+          <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Markers">
+              <PropertyRef Name="MarkerID" />
+            </Principal>
+            <Dependent Role="Invertarization">
+              <PropertyRef Name="MarkersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invertarization_MovomentLog">
+          <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="1" />
+          <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovomentLog">
+              <PropertyRef Name="IdMovomentLog" />
+            </Principal>
+            <Dependent Role="Invertarization">
+              <PropertyRef Name="InvertNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PETBASEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="InventoryStatus" EntityType="Self.InventoryStatus" />
+          <EntitySet Name="Invertarization" EntityType="Self.Invertarization" />
+          <EntitySet Name="Markers" EntityType="Self.Markers" />
+          <EntitySet Name="MovomentLog" EntityType="Self.MovomentLog" />
+          <EntitySet Name="Person_data" EntityType="Self.Person_data" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Invertarization_Markers1" Association="Self.FK_Invertarization_Markers1">
+            <End Role="Markers" EntitySet="Markers" />
+            <End Role="Invertarization" EntitySet="Invertarization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invertarization_MovomentLog" Association="Self.FK_Invertarization_MovomentLog">
+            <End Role="MovomentLog" EntitySet="MovomentLog" />
+            <End Role="Invertarization" EntitySet="Invertarization" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PETBASEModelContainer" CdmEntityContainer="PETBASEEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="PETBASEModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryStatus">
+            <EntityTypeMapping TypeName="PETBASEModel.InventoryStatus">
+              <MappingFragment StoreEntitySet="InventoryStatus">
+                <ScalarProperty Name="IdStatusWritten" ColumnName="IdStatusWritten" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invertarization">
+            <EntityTypeMapping TypeName="PETBASEModel.Invertarization">
+              <MappingFragment StoreEntitySet="Invertarization">
+                <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
+                <ScalarProperty Name="MarkersID" ColumnName="MarkersID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="cabinet" ColumnName="cabinet" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="WrittenOff" ColumnName="WrittenOff" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Markers">
+            <EntityTypeMapping TypeName="PETBASEModel.Markers">
+              <MappingFragment StoreEntitySet="Markers">
+                <ScalarProperty Name="MarkerID" ColumnName="MarkerID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovomentLog">
+            <EntityTypeMapping TypeName="PETBASEModel.MovomentLog">
+              <MappingFragment StoreEntitySet="MovomentLog">
+                <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
+                <ScalarProperty Name="Where_from" ColumnName="Where_from" />
+                <ScalarProperty Name="Where_to" ColumnName="Where_to" />
+                <ScalarProperty Name="DateMov" ColumnName="DateMov" />
+                <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_data">
+            <EntityTypeMapping TypeName="PETBASEModel.Person_data">
+              <MappingFragment StoreEntitySet="Person_data">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PETBASEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PETBASEModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventoryStatus">
+    <Key>
+      <PropertyRef Name="IdStatusWritten" />
+    </Key>
+    <Property Name="IdStatusWritten" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invertarization">
+    <Key>
+      <PropertyRef Name="InvertNumber" />
+      <PropertyRef Name="MarkersID" />
+    </Key>
+    <Property Name="InvertNumber" Type="int" Nullable="false" />
+    <Property Name="MarkersID" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="cabinet" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="WrittenOff" Type="bit" />
+    <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Markers">
+    <Key>
+      <PropertyRef Name="MarkerID" />
+    </Key>
+    <Property Name="MarkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MovomentLog">
+    <Key>
+      <PropertyRef Name="IdMovomentLog" />
+    </Key>
+    <Property Name="IdMovomentLog" Type="int" Nullable="false" />
+    <Property Name="Where_from" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Where_to" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateMov" Type="date" Nullable="false" />
+    <Property Name="InvertNumber" Type="int" />
+  </EntityType>
+  <EntityType Name="Person_data">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="Patronymic" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Invertarization_Markers1">
+    <End Role="Markers" Type="Self.Markers" Multiplicity="1" />
+    <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Markers">
+        <PropertyRef Name="MarkerID" />
+      </Principal>
+      <Dependent Role="Invertarization">
+        <PropertyRef Name="MarkersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invertarization_MovomentLog">
+    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="1" />
+    <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovomentLog">
+        <PropertyRef Name="IdMovomentLog" />
+      </Principal>
+      <Dependent Role="Invertarization">
+        <PropertyRef Name="InvertNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище PETBASEModelContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventoryStatus" EntityType="Self.InventoryStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invertarization" EntityType="Self.Invertarization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Markers" EntityType="Self.Markers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MovomentLog" EntityType="Self.MovomentLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person_data" EntityType="Self.Person_data" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Invertarization_Markers1" Association="Self.FK_Invertarization_Markers1">
+      <End Role="Markers" EntitySet="Markers" />
+      <End Role="Invertarization" EntitySet="Invertarization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invertarization_MovomentLog" Association="Self.FK_Invertarization_MovomentLog">
+      <End Role="MovomentLog" EntitySet="MovomentLog" />
+      <End Role="Invertarization" EntitySet="Invertarization" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

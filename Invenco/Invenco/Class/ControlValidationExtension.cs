@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Invenco.Entity;
 
 
 namespace Invenco.Class
@@ -164,7 +165,7 @@ namespace Invenco.Class
                 _sucess = false;
 
             }
-
+            
             return this;
         }
 
@@ -178,7 +179,22 @@ namespace Invenco.Class
          
             
         }
-        
+
+        public Validator  EntityCheckLogin(System.Windows.Controls.TextBox textBox)
+        { 
+          PETBASEEntities db = new PETBASEEntities();
+
+            if (db.Person_data.Any(x => x.Login == textBox.Text))
+            {
+                _sucess= false;
+            }
+            
+            return this;
+        }
+
+       
+
+
         public  bool Validate()
         {
             if(_sucess==false)
@@ -188,9 +204,7 @@ namespace Invenco.Class
             }
             else
             {
-                _control.ToolTip = null;
-                
-               
+                _control.ToolTip = null;              
             }
            return _sucess;
 

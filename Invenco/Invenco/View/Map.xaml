@@ -25,7 +25,7 @@
             </Grid.RowDefinitions>
         </Grid>
 
-        <gmaps:GMapControl Grid.Column="1" x:Name="Maps" Loaded="Maps_Loaded" MouseDown="Maps_MouseDown" MouseUp="Maps_MouseUp" />
+        <gmaps:GMapControl Grid.Column="1" x:Name="Maps" Loaded="Maps_Loaded"  MouseDoubleClick="Maps_MouseDoubleClick" />
 
         <StackPanel Width="Auto" Height="Auto" VerticalAlignment="Top" ClipToBounds="True"
                     Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" >

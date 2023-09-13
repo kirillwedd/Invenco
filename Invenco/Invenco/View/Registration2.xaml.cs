@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Invenco.Class;
+using Invenco.ClassEntity;
 
 namespace Invenco.View
 {
@@ -51,13 +52,24 @@ namespace Invenco.View
 
         private void RegistrationBt_Click(object sender, RoutedEventArgs e)
         {
-            
 
-           if( LogTB.Rules().MinCharacters(8).IsEmail(LogTB).Validate() && 
+           if( LogTB.Rules().MinCharacters(8).IsEmail(LogTB).EntityCheckLogin(LogTB).Validate() && 
              (PasswordBox.Rules().MinCharacters(8).SpecCharactersPasBox(1).CountNumbers(1).Validate()
              || Password_TB.Rules().MinCharacters(8).SpecCharacters(1).CountNumbers(1).Validate()))
             {
-                new Registration().Show();
+
+                ConnectEntity.db.Person_data.Add(new Entity.Person_data()
+                {
+                    PersonID=ConnectEntity.CountPerson,
+                    Login=LogTB.Text,
+                    Password = PasswordBox.Password 
+                    
+                });
+                ConnectEntity.db.SaveChanges();
+
+                ConnectEntity.PersonData(LogTB, Password_TB, PasswordBox );
+
+                new Inventory_tools().Show();
                 Hide();
                
                 

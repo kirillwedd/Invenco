@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:Invenco"
-             StartupUri="/View\Inventory_tools.xaml">
+             StartupUri="/View\Registration2.xaml">
     <Application.Resources>
        <ResourceDictionary>
 

@@ -24,6 +24,7 @@ using GMap.NET.WindowsForms.Markers;
 using Invenco.ClassTransmitted;
 using MahApps.Metro.Controls;
 using MaterialDesignThemes.Wpf;
+using Invenco.Class;
 
 namespace Invenco.View
 {
@@ -46,17 +47,17 @@ namespace Invenco.View
 
         private void ClosesBt_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Roll_up_Bt_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowsControls.Roll_Up_Mt(this);
         }
 
         private void Deployment_Icon_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowsControls.DeploymentMT(this);
         }
 
         private void Invertarization_Btn_Click(object sender, RoutedEventArgs e)
@@ -69,11 +70,7 @@ namespace Invenco.View
            
         }
 
-        private void GMapControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+       
         private void Maps_Loaded(object sender, RoutedEventArgs e)
         {
             Maps.MinZoom = 5;
@@ -94,32 +91,27 @@ namespace Invenco.View
 
         
 
-        private void Maps_MouseDown(object sender, MouseButtonEventArgs e)
+       
+
+
+        private void Maps_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Right)
+            if (e.ChangedButton == MouseButton.Left)
             {
 
                 double X = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lng;
                 double Y = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lat;
 
-                double TransmittedX=Math.Round(X, 6);
-                double TransmittedY=Math.Round(Y, 6);
-                
+                double TransmittedX = Math.Round(X, 6);
+                double TransmittedY = Math.Round(Y, 6);
+
 
                 Coordinates.Y = TransmittedY;
                 Coordinates.X = TransmittedX;
 
-            }
-        }
-
-        private void Maps_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                
                 GMapMarker gMarker = new GMapMarker(new PointLatLng(Coordinates.Y, Coordinates.X));
 
-                
+
                 gMarker.Shape = new Image()
                 {
                     Source = new BitmapImage(new Uri("C:\\Users\\1\\Desktop\\Pet_Project\\Invenco\\Invenco\\Image\\MarkerCheck.png")),

@@ -59,7 +59,7 @@
 
                 <StackPanel DockPanel.Dock="Top">
                     <Button x:Name="Invertarization_Btn" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
-                        <StackPanel x:Name="Menu_Profile" Orientation="Horizontal">
+                        <StackPanel x:Name="InvertarizationStack" Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Инвентаризация" Foreground="White" FontWeight="Bold" FontSize="15" />
 
@@ -67,10 +67,19 @@
                     </Button>
 
 
-                    <Button x:Name="Invertarization_Btns" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
-                        <StackPanel x:Name="Menu_Profile1" Orientation="Horizontal">
+                    <Button x:Name="MapBt" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
+                        <StackPanel x:Name="MapStack" Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="MapMarker"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Карта" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <Button x:Name="MovLogBt" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
+                        <StackPanel x:Name="MovLogStack" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Журнал перемещений" Foreground="White" FontWeight="Bold" FontSize="15" />
 
                         </StackPanel>
                     </Button>
