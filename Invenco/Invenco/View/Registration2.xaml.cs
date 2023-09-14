@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Invenco.Class;
 using Invenco.ClassEntity;
 
+
 namespace Invenco.View
 {
     /// <summary>
@@ -53,9 +54,8 @@ namespace Invenco.View
         private void RegistrationBt_Click(object sender, RoutedEventArgs e)
         {
 
-           if( LogTB.Rules().MinCharacters(8).IsEmail(LogTB).EntityCheckLogin(LogTB).Validate() && 
-             (PasswordBox.Rules().MinCharacters(8).SpecCharactersPasBox(1).CountNumbers(1).Validate()
-             || Password_TB.Rules().MinCharacters(8).SpecCharacters(1).CountNumbers(1).Validate()))
+           if( LogTB.Rules().MinCharacters(8).IsEmail(LogTB).EntityCheckLogin(LogTB).Validate() && PasswordBox.Visibility==Visibility.Visible && 
+             (PasswordBox.Rules().MinCharacters(8).SpecCharactersPasBox(1).CountNumbers(1).Validate()))
             {
 
                 ConnectEntity.db.Person_data.Add(new Entity.Person_data()
@@ -67,14 +67,32 @@ namespace Invenco.View
                 });
                 ConnectEntity.db.SaveChanges();
 
-                ConnectEntity.PersonData(LogTB, Password_TB, PasswordBox );
+                ConnectEntity.PersonData(LogTB, Password_TB, PasswordBox);
 
-                new Inventory_tools().Show();
+                new Inventory_tools(ConnectEntity.person_Data).Show();
                 Hide();
                
                 
             }
-            
+           else if(LogTB.Rules().MinCharacters(8).IsEmail(LogTB).EntityCheckLogin(LogTB).Validate() && Password_TB.Visibility == Visibility.Visible &&
+             (Password_TB.Rules().MinCharacters(8).SpecCharacters(1).CountNumbers(1).Validate()))
+            {
+                ConnectEntity.db.Person_data.Add(new Entity.Person_data()
+                {
+                    PersonID = ConnectEntity.CountPerson,
+                    Login = LogTB.Text,
+                    Password = Password_TB.Text
+
+                });
+                ConnectEntity.db.SaveChanges();
+
+                ConnectEntity.PersonData(LogTB, Password_TB, PasswordBox);
+
+                new Inventory_tools(ConnectEntity.person_Data).Show();
+                Hide();
+
+            }
+
         }
 
         private void KeyImage_MouseDown(object sender, MouseButtonEventArgs e)

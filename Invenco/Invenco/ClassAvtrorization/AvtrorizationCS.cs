@@ -16,11 +16,15 @@ namespace Invenco.ClassAvtrorization
         {
             PETBASEEntities db = new PETBASEEntities();
             bool _sucess = true;
-            if (db.Person_data.Any(x => x.Login == TextLogin.Text && (x.Password == PasswordBox.Password || x.Password == PasswordText.Text)))
+            if (db.Person_data.Any(x => x.Login == TextLogin.Text && PasswordText.Visibility==Visibility.Visible && x.Password == PasswordText.Text))
             {
                 _sucess = true;
                
               
+            }
+            else if(db.Person_data.Any(x => x.Login == TextLogin.Text && PasswordBox.Visibility == Visibility.Visible && x.Password == PasswordBox.Password))
+            {
+                _sucess = true;
             }
             else
             {

@@ -240,6 +240,8 @@
     </Compile>
     <Compile Include="ClassAvtrorization\AvtrorizationCS.cs" />
     <Compile Include="ClassEntity\ConnectEntity.cs" />
+    <Compile Include="ClassImage\AddImage.cs" />
+    <Compile Include="ClassImage\LoadImage.cs" />
     <Compile Include="ClassTransmitted\Coordinates.cs" />
     <Compile Include="ClassTransmitted\ImageTransmitted.cs" />
     <Compile Include="ClassTransmitted\MathClamp.cs" />
@@ -286,6 +288,9 @@
     </Compile>
     <Compile Include="View\Avtorization.xaml.cs">
       <DependentUpon>Avtorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inventarization.xaml.cs">
+      <DependentUpon>Inventarization.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Inventory_tools.xaml.cs">
       <DependentUpon>Inventory_tools.xaml</DependentUpon>
@@ -343,6 +348,10 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="View\Avtorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Inventarization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

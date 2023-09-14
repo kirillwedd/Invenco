@@ -349,3 +349,5 @@ C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.Generate
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.CoreCompileInputs.cache
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.CopyComplete
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.SuggestedBindingRedirects.cache
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Inventarization.g.cs
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Inventarization.baml

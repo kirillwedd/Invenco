@@ -58,6 +58,7 @@
     <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="LastName" Type="nvarchar(max)" />
     <Property Name="Patronymic" Type="nvarchar(max)" />
+    <Property Name="Image" Type="image" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

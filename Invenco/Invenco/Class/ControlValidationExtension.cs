@@ -176,6 +176,7 @@ namespace Invenco.Class
             if (regex.IsMatch(textBox.Text) == false)
             _sucess= false;
             return this;
+           
          
             
         }

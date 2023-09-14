@@ -14,7 +14,8 @@ using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using Invenco.Class;
 using Invenco.ClassTransmitted;
-
+using Invenco.ClassEntity;
+using Invenco.ClassImage;
 
 
 namespace Invenco.View
@@ -79,7 +80,13 @@ namespace Invenco.View
 
 
             ImageTransmitted.Image = PhotoImage.Source;
-            new Inventory_tools().Show();
+
+            ConnectEntity.db.Person_data.Add(new Entity.Person_data()
+            {
+                Image = AddImage.Photo
+            });
+            ConnectEntity.db.SaveChanges();
+            new Inventory_tools(ConnectEntity.person_Data).Show();
             Hide();
         }
 

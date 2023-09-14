@@ -16,6 +16,10 @@ using Microsoft.Win32;
 using System.IO;
 using Invenco.Class;
 using Invenco.ClassTransmitted;
+using Invenco.ClassImage;
+using Invenco.ClassEntity;
+using Invenco.Entity;
+using System.Drawing;
 
 namespace Invenco.View
 {
@@ -24,10 +28,12 @@ namespace Invenco.View
     /// </summary>
     public partial class Inventory_tools : Window
     {
-        public Inventory_tools()
+        public Inventory_tools(Person_data person_Data)
         {
             InitializeComponent();
-            PhotoEllipse.ImageSource = ImageTransmitted.Image;
+           
+            
+            
             
         }
 
@@ -50,16 +56,7 @@ namespace Invenco.View
 
         private void EllipcePhoto_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog create = new OpenFileDialog();
-            create.Filter = "PNG(*.png)|*.png|JPG(*.jpg)|*.jpg|JPEG(*.jpeg)|*.jpeg";
-            if (create.ShowDialog() == true)
-            {
-                PhotoEllipse.ImageSource = new BitmapImage(new Uri(create.FileName));
-                ImageTransmitted.Image = PhotoEllipse.ImageSource;
-                
-
-            }
-            new PictureEditor().Show();
+            AddImage.AddImageProfile(PhotoEllipse, "PNG(*.png)|*.png|JPG(*.jpg)|*.jpg|JPEG(*.jpeg)|*.jpeg");
             
         }
 

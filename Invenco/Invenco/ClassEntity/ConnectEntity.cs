@@ -22,6 +22,7 @@ namespace Invenco.ClassEntity
 
         private static int _category=db.Category.Count() + 1;
 
+        public static Person_data person_Data { get; private set; }
         
 
         public static int CountPerson
@@ -59,6 +60,7 @@ namespace Invenco.ClassEntity
         {
            Person_data person=(db.Person_data.Where(x=>x.Login==TextLogin.Text && (x.Password==PasswordText.Text || x.Password==PasswordBox.Password))).FirstOrDefault();
 
+            person_Data = person;
         }
 
     }

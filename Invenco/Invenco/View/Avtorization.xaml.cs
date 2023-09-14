@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Invenco.Class;
 using Invenco.ClassAvtrorization;
+using Invenco.ClassEntity;
 
 namespace Invenco.View
 {
@@ -45,13 +46,11 @@ namespace Invenco.View
         {
           if(AvtrorizationCS.EntityCheckAvtrorization(LogTB, Password_TB, PasswordBox))
             {
-                new Inventory_tools().Show();
+                ConnectEntity.PersonData(LogTB, Password_TB, PasswordBox);
+                new Inventory_tools(ConnectEntity.person_Data).Show();
                 Hide();
             }
-          else
-            {
-                MessageBox.Show("Логин или пароль введены не правильно");
-            }
+         
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
