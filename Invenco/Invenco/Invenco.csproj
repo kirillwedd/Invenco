@@ -241,6 +241,7 @@
     <Compile Include="ClassAvtrorization\AvtrorizationCS.cs" />
     <Compile Include="ClassEntity\ConnectEntity.cs" />
     <Compile Include="ClassImage\AddImage.cs" />
+    <Compile Include="ClassImage\DeleteImage.cs" />
     <Compile Include="ClassImage\LoadImage.cs" />
     <Compile Include="ClassTransmitted\Coordinates.cs" />
     <Compile Include="ClassTransmitted\ImageTransmitted.cs" />

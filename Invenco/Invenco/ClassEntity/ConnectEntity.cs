@@ -10,7 +10,7 @@ namespace Invenco.ClassEntity
 {
     static class ConnectEntity
     {
-    public static PETBASEEntities db = new PETBASEEntities();
+        public static PETBASEEntities db = new PETBASEEntities();
 
         private static int _count = db.Person_data.Count() + 1;
 
@@ -22,7 +22,7 @@ namespace Invenco.ClassEntity
 
         private static int _category=db.Category.Count() + 1;
 
-        public static Person_data person_Data { get; private set; }
+        public static Person_data person_Data { get; set; }
         
 
         public static int CountPerson

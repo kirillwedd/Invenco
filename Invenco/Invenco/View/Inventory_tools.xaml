@@ -45,6 +45,13 @@
                         <Ellipse.Fill>
                             <ImageBrush x:Name="PhotoEllipse" ImageSource="{Icon:MaterialDesignImage Kind=PhotoCamera, Brush=Gray}"/>
                         </Ellipse.Fill>
+                        <Ellipse.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Редактировать" Click="EditingImage_Click" />
+                                <MenuItem Header="Удалить" Click="DeletePhoto_Click"/>
+                            </ContextMenu>
+                        </Ellipse.ContextMenu>
+
                     </Ellipse>
 
                

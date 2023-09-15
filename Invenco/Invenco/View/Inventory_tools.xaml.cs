@@ -21,6 +21,7 @@ using Invenco.ClassEntity;
 using Invenco.Entity;
 using System.Drawing;
 
+
 namespace Invenco.View
 {
     /// <summary>
@@ -28,12 +29,18 @@ namespace Invenco.View
     /// </summary>
     public partial class Inventory_tools : Window
     {
+        
+
         public Inventory_tools(Person_data person_Data)
         {
             InitializeComponent();
-           
+
             
+            PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(person_Data.Image, person_Data);
+
             
+
+            ConnectEntity.person_Data=person_Data;
             
         }
 
@@ -56,7 +63,12 @@ namespace Invenco.View
 
         private void EllipcePhoto_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            AddImage.AddImageProfile(PhotoEllipse, "PNG(*.png)|*.png|JPG(*.jpg)|*.jpg|JPEG(*.jpeg)|*.jpeg");
+            if(e.ChangedButton==MouseButton.Left)
+            {
+                
+             AddImage.AddImageProfile(PhotoEllipse, "PNG(*.png)|*.png|JPG(*.jpg)|*.jpg|JPEG(*.jpeg)|*.jpeg", ConnectEntity.person_Data);
+
+            }
             
         }
 
@@ -64,6 +76,18 @@ namespace Invenco.View
         {
             new Map().Show();
             Hide();
+        }
+
+        private void EditingImage_Click(object sender, RoutedEventArgs e)
+        {
+            new PictureEditor(ConnectEntity.person_Data).Show();
+            Hide();
+        }
+
+        private void DeletePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoEllipse.ImageSource = DeleteImage.ImSource;
+           
         }
     }
 }
