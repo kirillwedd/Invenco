@@ -45,5 +45,29 @@ namespace Invenco.Class
 
             }
         }
+
+        public static void Clears(TextBox textBox)
+        {
+            bool word;
+            string[] Words = "Фамилия Имя Отчество".Split(' ');
+
+            foreach(var textForbidden in textBox.Text.Split(' '))
+            {
+                word=Words.Contains(textForbidden);
+
+                if (word == true)
+                    textBox.Clear();
+                    
+            }
+           
+        }
+
+        public static void Completion(TextBox textBox, string word)
+        {
+            if(textBox.Text=="")
+            {
+                textBox.Text = word;
+            }
+        }
     }
 }

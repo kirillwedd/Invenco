@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using Invenco.ClassEntity;
 using System.Windows.Media;
+using System.Drawing;
+using System.Windows.Controls;
 
 namespace Invenco.ClassImage
 {
@@ -25,6 +27,15 @@ namespace Invenco.ClassImage
                 bitmap.EndInit();
                 imageBrush.ImageSource = bitmap;
             }
+        }
+
+        public static byte[] PictureEditorUpdateImage(CroppedBitmap _image)
+        {
+            MemoryStream memStream = new MemoryStream();
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(_image));
+            encoder.Save(memStream);
+            return memStream.ToArray();
         }
       
     }

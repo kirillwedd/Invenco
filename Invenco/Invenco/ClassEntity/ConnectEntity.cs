@@ -63,5 +63,10 @@ namespace Invenco.ClassEntity
             person_Data = person;
         }
 
+        public static void PersonData(Person_data person_Data)
+        {
+            person_Data=(db.Person_data.Where(x=>x.Name==null && x.LastName==null  && x.Patronymic==null)).FirstOrDefault();
+        }
+
     }
 }

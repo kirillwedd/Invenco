@@ -351,3 +351,5 @@ C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.CopyComp
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.SuggestedBindingRedirects.cache
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Inventarization.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Inventarization.baml
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Person_data_profile.g.cs
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Person_data_profile.baml

@@ -17,7 +17,7 @@ using Invenco.ClassTransmitted;
 using Invenco.ClassEntity;
 using Invenco.ClassImage;
 using Invenco.Entity;
-
+using System.IO;
 
 namespace Invenco.View
 {
@@ -35,14 +35,14 @@ namespace Invenco.View
         public PictureEditor(Person_data _Data)
         {
             InitializeComponent();         
-            PhotoImage.Source = ImageTransmitted.Image;
+             
             _Data.PersonID = ConnectEntity.person_Data.PersonID;
             _Data.Login = ConnectEntity.person_Data.Login;
             _Data.Password=ConnectEntity.person_Data.Password;
             _Data.Name= ConnectEntity.person_Data.Name;
             _Data.LastName= ConnectEntity.person_Data.LastName;
             _Data.Patronymic=ConnectEntity.person_Data.Patronymic;
-            _Data.Image= ConnectEntity.person_Data.Image;
+            PhotoImage.Source = AddImage.ByteToArrayToImage(_Data.Image, _Data);
             Person_Data= _Data;
         }
 
@@ -92,10 +92,11 @@ namespace Invenco.View
 
             ImageTransmitted.Image = PhotoImage.Source;
 
+            
+
             var chengePerson_Data = ConnectEntity.db.Person_data
                 .Where(x => x.PersonID == Person_Data.PersonID && x.Login == Person_Data.Login && x.Password == Person_Data.Password
-                && x.Name == Person_Data.Name && x.LastName==Person_Data.LastName && x.Patronymic == Person_Data.Patronymic 
-                && x.Image == Person_Data.Image).FirstOrDefault();
+                && x.Name == Person_Data.Name && x.LastName==Person_Data.LastName && x.Patronymic == Person_Data.Patronymic).FirstOrDefault();
 
             chengePerson_Data.PersonID=Person_Data.PersonID;
             chengePerson_Data.Login=Person_Data.Login;
@@ -103,7 +104,7 @@ namespace Invenco.View
             chengePerson_Data.Name=Person_Data.Name;
             chengePerson_Data.LastName=Person_Data.LastName;
             chengePerson_Data.Patronymic=Person_Data.Patronymic;
-            chengePerson_Data.Image = AddImage.Photo;
+            chengePerson_Data.Image =LoadImage.PictureEditorUpdateImage(PhotoImage.Source as CroppedBitmap);
 
             
             ConnectEntity.db.SaveChanges();

@@ -302,6 +302,9 @@
     <Compile Include="View\Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Person_data_profile.xaml.cs">
+      <DependentUpon>Person_data_profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PictureEditor.xaml.cs">
       <DependentUpon>PictureEditor.xaml</DependentUpon>
     </Compile>
@@ -365,6 +368,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Map.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Person_data_profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
