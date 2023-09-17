@@ -38,7 +38,7 @@ namespace Invenco.View
             
             PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(person_Data.Image, person_Data);
 
-            
+            ConnectEntity.PersonData(person_Data, FullName_tb, FullPatronymic, AddFullPersonDataBt);
 
             ConnectEntity.person_Data=person_Data;
             
@@ -86,8 +86,14 @@ namespace Invenco.View
 
         private void DeletePhoto_Click(object sender, RoutedEventArgs e)
         {
-            PhotoEllipse.ImageSource = DeleteImage.ImSource;
+            PhotoEllipse.ImageSource = DeleteImage.DeleteImages(ConnectEntity.person_Data, PhotoEllipse);
            
+        }
+
+        private void AddFullPersonData_Click(object sender, RoutedEventArgs e)
+        {
+            new Person_data_profile(ConnectEntity.person_Data).Show();
+            Hide();
         }
     }
 }

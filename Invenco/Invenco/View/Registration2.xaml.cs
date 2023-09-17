@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Invenco.Class;
 using Invenco.ClassEntity;
+using Invenco.Entity;
 
 
 namespace Invenco.View

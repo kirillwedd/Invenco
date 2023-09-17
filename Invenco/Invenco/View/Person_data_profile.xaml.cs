@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Invenco.Class;
+using Invenco.ClassEntity;
 using Invenco.ClassImage;
 using Invenco.Entity;
 
@@ -26,6 +27,7 @@ namespace Invenco.View
         {
             InitializeComponent();
             PhotoEllipse.ImageSource= AddImage.ByteToArrayToImage(person_Data.Image, person_Data);
+            Message_Person_data_profile.UploadingData(person_Data);
         }
 
         private void Name_TB_MouseEnter(object sender, MouseEventArgs e)
@@ -56,6 +58,11 @@ namespace Invenco.View
         private void Patronymic_TB_MouseLeave(object sender, MouseEventArgs e)
         {
             ClassClear.Completion(Patronymic_TB, "Отчество");
+        }
+
+        private void AddPersonFullData_Bt_Click(object sender, RoutedEventArgs e)
+        {
+            Message_Person_data_profile.AddPersonDataContext("Внимание! Проверьте правильность введенных данных","", Name_TB, LastName_TB, Patronymic_TB);
         }
     }
 }

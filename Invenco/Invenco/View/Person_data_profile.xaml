@@ -38,5 +38,25 @@
         <TextBox x:Name="Patronymic_TB" Grid.Row="3" Margin="10,10" BorderBrush="Black" 
                   Style="{StaticResource Textbox1}" Text="Отчество" MouseEnter="Patronymic_TB_MouseEnter" MouseLeave="Patronymic_TB_MouseLeave"/>
 
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center" Margin="0,15,0,15">
+
+            <Button Style="{x:Null}" x:Name="AddPersonFullData_Bt"  Height="42" Width="375"  FontSize="20"
+                            Background="DodgerBlue" Opacity="0.9" Foreground="White" Click="AddPersonFullData_Bt_Click"   >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+
+                    </Style>
+                </Button.Resources>
+
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconEntypo Kind="AddToList"  Style="{StaticResource menuButtonIcon_Person_data_profile}" Width="25" Height="25" />
+                    <TextBlock Text="Добавить" Foreground="White" FontWeight="Bold" FontSize="20" />
+
+                </StackPanel>
+
+            </Button>
+        </StackPanel>
+
     </Grid>
 </Window>

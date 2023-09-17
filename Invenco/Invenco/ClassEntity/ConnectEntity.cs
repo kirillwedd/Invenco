@@ -63,9 +63,22 @@ namespace Invenco.ClassEntity
             person_Data = person;
         }
 
-        public static void PersonData(Person_data person_Data)
+        public static void PersonData(Person_data person_Data, System.Windows.Controls.TextBlock textBlock, 
+                                      System.Windows.Controls.TextBlock textBlock1, System.Windows.Controls.Button button)
         {
-            person_Data=(db.Person_data.Where(x=>x.Name==null && x.LastName==null  && x.Patronymic==null)).FirstOrDefault();
+           
+
+            if (person_Data.Name==null && person_Data.LastName==null && person_Data.Patronymic==null)
+            {
+                textBlock.Text = "Выполните полную авторизацию";
+                textBlock1.Visibility = System.Windows.Visibility.Collapsed;
+                button.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                textBlock.Text = person_Data.FullName;
+                textBlock1.Text = person_Data.Patronymic;
+            }
         }
 
     }

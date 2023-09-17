@@ -240,6 +240,7 @@
     </Compile>
     <Compile Include="ClassAvtrorization\AvtrorizationCS.cs" />
     <Compile Include="ClassEntity\ConnectEntity.cs" />
+    <Compile Include="ClassEntity\Message_Person_data_profile.cs" />
     <Compile Include="ClassImage\AddImage.cs" />
     <Compile Include="ClassImage\DeleteImage.cs" />
     <Compile Include="ClassImage\LoadImage.cs" />

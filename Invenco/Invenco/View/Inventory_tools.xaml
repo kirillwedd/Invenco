@@ -62,6 +62,20 @@
                 <TextBlock x:Name="FullPatronymic" Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                 DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"  />
 
+                <Button x:Name="AddFullPersonDataBt" Visibility="Collapsed"  Foreground="White" Width="235" FontSize="15" Background="RoyalBlue" Style="{x:Null}"
+                         DockPanel.Dock="Top" Height="40" Content="Полная авторизация" Margin=" 5 25 0 10" Click="AddFullPersonData_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+
+
+
                 <Separator  DockPanel.Dock="Top" Height="0.8"  />
 
                 <StackPanel DockPanel.Dock="Top">
