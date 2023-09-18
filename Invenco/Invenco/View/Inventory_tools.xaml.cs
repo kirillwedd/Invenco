@@ -95,5 +95,11 @@ namespace Invenco.View
             new Person_data_profile(ConnectEntity.person_Data).Show();
             Hide();
         }
+
+        private void Back_Left_chefron_BT_Click(object sender, RoutedEventArgs e)
+        {
+            new Avtorization().Show();
+            Hide();
+        }
     }
 }

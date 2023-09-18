@@ -24,7 +24,7 @@
     <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="WrittenOff" Type="Boolean" />
     <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />

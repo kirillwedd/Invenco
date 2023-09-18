@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Invenco.Class;
+using Invenco.ClassEntity;
+using Invenco.ClassInvertarization;
 
 namespace Invenco.View
 {
@@ -38,6 +40,39 @@ namespace Invenco.View
         private void ClosesBt_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Back_Left_chefron_BT_Click(object sender, RoutedEventArgs e)
+        {
+            new Inventory_tools(ConnectEntity.person_Data).Show();
+            Hide();
+        }
+
+        private void MapBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MovLogBt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }      
+
+        private void Close_BT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EllipcePhoto_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void AddInvertarization_Click(object sender, RoutedEventArgs e)
+        {
+            AddEntityInvertarization.AddInventoryStatus(StatusTB);
+            AddEntityInvertarization.AddCategory(CategoryTB);
+            AddEntityInvertarization.Check( "Поля для заполнения пусты", "Ошибка", MessageBoxImage.Error, CategoryTB, StatusTB);
         }
     }
 }

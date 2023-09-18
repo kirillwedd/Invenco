@@ -40,8 +40,10 @@
             <DockPanel>
                 <Border DockPanel.Dock="Top"  HorizontalAlignment="Center" Padding="3" Background="White" CornerRadius="100"
                         Width="120" Height="120" VerticalAlignment="Top" >
+
+
                     
-                    <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
+                        <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
                         <Ellipse.Fill>
                             <ImageBrush x:Name="PhotoEllipse" ImageSource="{Icon:MaterialDesignImage Kind=PhotoCamera, Brush=Gray}"/>
                         </Ellipse.Fill>
@@ -54,8 +56,17 @@
 
                     </Ellipse>
 
+                    
+
                
                 </Border>
+
+
+
+                <Button x:Name="Back_Left_chefron_BT" DockPanel.Dock="Top" Margin="5,-180,0,0"  Style="{StaticResource topButton}" Click="Back_Left_chefron_BT_Click">
+                    <Icon:PackIconMaterial Kind="ArrowCollapseLeft"/>
+                </Button>
+
 
                 <TextBlock x:Name="FullName_tb"  Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                 DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"/>
@@ -117,12 +128,14 @@
 
                 </StackPanel>
 
+              
+
 
 
             </DockPanel>
 
         </Border>
-        <materialDesign:Badged Grid.Column="1" Content="Badged" Margin="757,265,0,0"/>
+       
 
 
 

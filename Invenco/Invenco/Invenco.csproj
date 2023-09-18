@@ -244,6 +244,7 @@
     <Compile Include="ClassImage\AddImage.cs" />
     <Compile Include="ClassImage\DeleteImage.cs" />
     <Compile Include="ClassImage\LoadImage.cs" />
+    <Compile Include="ClassInvertarization\AddEntityInvertarization.cs" />
     <Compile Include="ClassTransmitted\Coordinates.cs" />
     <Compile Include="ClassTransmitted\ImageTransmitted.cs" />
     <Compile Include="ClassTransmitted\MathClamp.cs" />

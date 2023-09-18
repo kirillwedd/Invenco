@@ -3,10 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Invenco.View"
         mc:Ignorable="d"
         Title="Inventarization" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" x:Name="AddInform_Grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+        </Grid>
+
+
+
         <StackPanel Width="Auto" Height="Auto" VerticalAlignment="Top" ClipToBounds="True"
                     Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" >
 
@@ -18,6 +36,145 @@
                     HorizontalAlignment="Right" Click="ClosesBt_Click"/>
 
         </StackPanel>
+
+        <Border Background="#FF657DD0" Width="Auto" HorizontalAlignment="Left">
+            <DockPanel>
+                <Border DockPanel.Dock="Top"  HorizontalAlignment="Center" Padding="3" Background="White" CornerRadius="100"
+                        Width="120" Height="120" VerticalAlignment="Top" >
+
+
+
+                    <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="PhotoEllipse" ImageSource="{Icon:MaterialDesignImage Kind=PhotoCamera, Brush=Gray}"/>
+                        </Ellipse.Fill>
+
+                    </Ellipse>
+
+
+
+
+                </Border>
+
+
+
+                <Button x:Name="Back_Left_chefron_BT" DockPanel.Dock="Top" Margin="5,-180,0,0"  Style="{StaticResource topButton}" Click="Back_Left_chefron_BT_Click">
+                    <Icon:PackIconMaterial Kind="ArrowCollapseLeft"/>
+                </Button>
+
+
+                <TextBlock x:Name="FullName_tb"  Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"/>
+                <TextBlock x:Name="FullPatronymic" Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"  />
+
+                <Separator  DockPanel.Dock="Top" Height="0.8"  />
+
+                <StackPanel DockPanel.Dock="Top">
+                   
+
+
+                    <Button x:Name="MapBt" Style="{StaticResource menuButton}" Click="MapBt_Click"  >
+                        <StackPanel x:Name="MapStack" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="MapMarker"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Карта" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+
+
+                    <Button x:Name="MovLogBt" Style="{StaticResource menuButton}" Click="MovLogBt_Click"  >
+                        <StackPanel x:Name="MovLogStack" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Журнал перемещений" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom">
+                    <Button x:Name="Close_BT" Style="{StaticResource menuButton}" Click="Close_BT_Click"  >
+                        <StackPanel x:Name="Menu_Profile2" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Close"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Выход" Foreground="White" FontWeight="Bold" FontSize="15" />
+
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+
+
+
+
+            </DockPanel>
+
+        </Border>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,45,0,0">
+            <TextBlock FontSize="25" Text="Заполнение данных" HorizontalAlignment="Center"/>
+            <Expander  >
+                <Expander.Header>
+                    <Grid >
+                        <TextBlock Text="Категория" FontSize="25" HorizontalAlignment="Center"></TextBlock>
+                       
+                    </Grid>
+                        
+                    
+                </Expander.Header>
+
+                <StackPanel>
+                    <TextBox x:Name="CategoryTB" Style="{StaticResource Textbox1}" Width="Auto" materialDesign:HintAssist.Hint="Логин"
+                          MaxWidth="800"/>
+
+                    <Expander >
+                        <Expander.Header>
+                            <Grid >
+                                <TextBlock Text="Статус" FontSize="25" HorizontalAlignment="Center"></TextBlock>
+
+                            </Grid>
+
+
+                        </Expander.Header>
+
+                        <TextBox x:Name="StatusTB" Style="{StaticResource Textbox1}" Width="Auto" materialDesign:HintAssist.Hint="Логин"
+                          MaxWidth="800"/>
+                    </Expander>
+
+                    <Button Style="{x:Null}" x:Name="AddInvertarization"  Height="42" Width="375"   FontSize="20"
+                            Background="DodgerBlue" Opacity="0.9" Foreground="White" Click="AddInvertarization_Click"   >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconEntypo Kind="AddToList"  Style="{StaticResource menuButtonIcon_Person_data_profile}" Width="25" Height="25" />
+                        <TextBlock Text="Добавить" Foreground="White" FontWeight="Bold" FontSize="20" />
+
+                    </StackPanel>
+
+                    </Button>
+                </StackPanel>
+                
+                
+
+            </Expander>
+
+            
+
+                
+          
+
+
+
+
+
+
+        </StackPanel>
+
 
     </Grid>
 </Window>
