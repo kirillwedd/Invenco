@@ -113,7 +113,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,45,0,0">
             <TextBlock FontSize="25" Text="Заполнение данных" HorizontalAlignment="Center"/>
-            <Expander  >
+            <Expander x:Name="MainExpander" >
                 <Expander.Header>
                     <Grid >
                         <TextBlock Text="Категория" FontSize="25" HorizontalAlignment="Center"></TextBlock>

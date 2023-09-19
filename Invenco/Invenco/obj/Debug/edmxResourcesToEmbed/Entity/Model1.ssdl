@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
-    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CategoryName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="InventoryStatus">

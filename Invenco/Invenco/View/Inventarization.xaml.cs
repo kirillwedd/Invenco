@@ -72,7 +72,8 @@ namespace Invenco.View
         {
             AddEntityInvertarization.AddInventoryStatus(StatusTB);
             AddEntityInvertarization.AddCategory(CategoryTB);
-            AddEntityInvertarization.Check( "Поля для заполнения пусты", "Ошибка", MessageBoxImage.Error, CategoryTB, StatusTB);
+            AddEntityInvertarization.CheckExpanderForTextBox(MainExpander, "Все заполняемые поля пустые", "Ошибка", MessageBoxImage.Error);
+            AddEntityInvertarization.MessageBuilder();
         }
     }
 }
