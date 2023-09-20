@@ -70,10 +70,24 @@ namespace Invenco.View
 
         private void AddInvertarization_Click(object sender, RoutedEventArgs e)
         {
-            AddEntityInvertarization.AddInventoryStatus(StatusTB);
-            AddEntityInvertarization.AddCategory(CategoryTB);
-            AddEntityInvertarization.CheckExpanderForTextBox(MainExpander, "Все заполняемые поля пустые", "Ошибка", MessageBoxImage.Error);
-            AddEntityInvertarization.MessageBuilder();
+            int countsTextboxCount = AddEntityInvertarization.CountTextBoxesStackPanel(MainStackPanel);
+            if (countsTextboxCount != 2 )
+            {
+
+                AddEntityInvertarization.AddInventoryStatus(StatusTB);
+                AddEntityInvertarization.AddCategory(CategoryTB);
+                AddEntityInvertarization.MessageBuilder();
+                
+            
+
+            }
+            else
+            {
+                AddEntityInvertarization.AddInventoryStatus(StatusTB);
+                AddEntityInvertarization.AddCategory(CategoryTB);
+                AddEntityInvertarization.MessageBugBuilder();
+            }
+
         }
     }
 }

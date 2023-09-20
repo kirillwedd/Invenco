@@ -9,18 +9,25 @@ using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Invenco.ClassInvertarization
 {
     public static class AddEntityInvertarization
     {
+       
+
+        public static int CheckCount { get; set; }
+
+
         private static StringBuilder _Builder;
         private static StringBuilder _Builder2;
         public static void AddInventoryStatus(System.Windows.Controls.TextBox textBox)
         {
             _Builder= new StringBuilder();
-            if (!string.IsNullOrWhiteSpace(textBox.Text) || ConnectEntity.db.InventoryStatus.Any(x=>x.StatusName==textBox.Text.ToUpper()))
+            if (!string.IsNullOrWhiteSpace(textBox.Text) && !ConnectEntity.db.InventoryStatus.Any(x=>x.StatusName.ToUpper().Contains(textBox.Text.ToUpper())))
             {
                 ConnectEntity.db.InventoryStatus.Add(new InventoryStatus()
                 {
@@ -30,12 +37,10 @@ namespace Invenco.ClassInvertarization
 
                 });
                 ConnectEntity.db.SaveChanges();
+                _Builder.AppendLine($"Вы добавили {textBox.Text} в базу");
 
             }
-            else
-            {
-                _Builder.AppendLine("Поле 'Статус' не заполнено или уже есть в базе");
-            }
+            
 
 
         }
@@ -43,36 +48,41 @@ namespace Invenco.ClassInvertarization
         public static void AddCategory(System.Windows.Controls.TextBox textBox)
         {
             _Builder2= new StringBuilder();
-            if (!string.IsNullOrWhiteSpace(textBox.Text) || ConnectEntity.db.Category.Any(x => x.CategoryName == textBox.Text.ToUpper()))
+            if (!string.IsNullOrWhiteSpace(textBox.Text) && !ConnectEntity.db.Category.Any(x => x.CategoryName.ToUpper().Contains(textBox.Text.ToUpper())))
             {
                 ConnectEntity.db.Category.Add(new Category()
                 {
 
                     CategoryId = ConnectEntity.Category,
-                    CategoryName = textBox.Text
+                    CategoryName = textBox.Text,
 
                 });
                 ConnectEntity.db.SaveChanges();
+                _Builder2.AppendLine($"Вы добавили {textBox.Text} в базу");
 
             }
-            else
-            {
-                _Builder2.AppendLine("Поле 'Категория' не заполнено или уже есть в базе");
-            }
+            
         }
 
         public static void MessageBuilder()
         {
-            string s= _Builder.ToString();
-            string ss = _Builder2.ToString();
-            string[] values = new string[] { s, ss};
+           
+            string[] values = new string[] { _Builder.ToString(), _Builder2.ToString()};
 
             string buildstring = string.Join("", values);
 
+            
+
             if (_Builder.Length>0 || _Builder2.Length>0)
             {
-                MessageBox.Show(buildstring);
+                System.Windows.MessageBox.Show(buildstring, "Данные");
             }
+        }
+
+        public static void MessageBugBuilder()
+        {
+
+            System.Windows.MessageBox.Show("Поля не заполненны", "Ошибка");
         }
 
 
@@ -104,6 +114,50 @@ namespace Invenco.ClassInvertarization
 
         }
 
+        public static int CountTextBoxesStackPanel(FrameworkElement parent)
+        {
+            int count = 0;
+
+           
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is System.Windows.Controls.TextBox textBox && string.IsNullOrEmpty(textBox.Text))
+                    count++;
+                else if (child is FrameworkElement frameworkElement)
+                    count += CountTextBoxesStackPanel(frameworkElement);
+               
+            }
+
+            
+            return count;
+
+          
+        }
+
+        public static int CountTextBoxesExpander(FrameworkElement parent)
+        {
+            int count = 0;
+
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is System.Windows.Controls.TextBox )
+                    count++;
+                else if (child is FrameworkElement frameworkElement)
+                    count += CountTextBoxesExpander(frameworkElement);
+            }
+
+
+            return count;
+
+
+        }
+
+
+
         public static IEnumerable<T> FindChildren<T>(this DependencyObject parent) where T : DependencyObject
         {
             if (parent != null)
@@ -133,8 +187,8 @@ namespace Invenco.ClassInvertarization
            
                     if(textBox.Text=="")
                     {
-                        
-                        MessageBox.Show(Messagecontext, caption, MessageBoxButton.OK, messageBox);
+
+                      System.Windows.MessageBox.Show(Messagecontext, caption, MessageBoxButton.OK, messageBox);
                     }
                 
             

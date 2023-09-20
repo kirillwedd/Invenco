@@ -111,7 +111,7 @@
 
         </Border>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,45,0,0">
+        <StackPanel x:Name="MainStackPanel" Grid.Column="1" Grid.Row="1" Margin="0,45,0,0">
             <TextBlock FontSize="25" Text="Заполнение данных" HorizontalAlignment="Center"/>
             <Expander x:Name="MainExpander" >
                 <Expander.Header>
@@ -124,7 +124,7 @@
                 </Expander.Header>
 
                 <StackPanel>
-                    <TextBox x:Name="CategoryTB" Style="{StaticResource Textbox1}" Width="Auto" materialDesign:HintAssist.Hint="Логин"
+                    <TextBox x:Name="CategoryTB" Style="{StaticResource Textbox1}" Width="Auto"
                           MaxWidth="800"/>
 
                     <Expander >
@@ -137,7 +137,7 @@
 
                         </Expander.Header>
 
-                        <TextBox x:Name="StatusTB" Style="{StaticResource Textbox1}" Width="Auto" materialDesign:HintAssist.Hint="Логин"
+                        <TextBox x:Name="StatusTB" Style="{StaticResource Textbox1}" Width="Auto" 
                           MaxWidth="800"/>
                     </Expander>
 
