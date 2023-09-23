@@ -131,10 +131,7 @@
                         <Expander.Header>
                             <Grid >
                                 <TextBlock Text="Статус" FontSize="25" HorizontalAlignment="Center"></TextBlock>
-
                             </Grid>
-
-
                         </Expander.Header>
 
                         <TextBox x:Name="StatusTB" Style="{StaticResource Textbox1}" Width="Auto" 

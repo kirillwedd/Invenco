@@ -82,7 +82,7 @@ namespace Invenco.ClassInvertarization
         public static void MessageBugBuilder()
         {
 
-            System.Windows.MessageBox.Show("Поля не заполненны", "Ошибка");
+            System.Windows.MessageBox.Show("Поля не заполнены", "Ошибка");
         }
 
 

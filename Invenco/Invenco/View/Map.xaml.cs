@@ -25,6 +25,11 @@ using Invenco.ClassTransmitted;
 using MahApps.Metro.Controls;
 using MaterialDesignThemes.Wpf;
 using Invenco.Class;
+using System.Data.SqlClient;
+using System.Data;
+using Invenco.MapsClass;
+using Invenco.Entity;
+using Invenco.ClassEntity;
 
 namespace Invenco.View
 {
@@ -38,10 +43,9 @@ namespace Invenco.View
         public Map()
         {
             InitializeComponent();
-           
-          
 
-
+            Loaded += Maps_Loaded;
+            
 
         }
 
@@ -80,36 +84,24 @@ namespace Invenco.View
             Maps.DragButton = MouseButton.Left;
             Maps.Position =new PointLatLng(55.344181, 61.338637);
             GMapProvider.Language = LanguageType.Russian;
-           
-          
-
-            
-
-           
+            LoadMarkers();
+                    
             
         }
 
-        
-
-       
-
-
-        private void Maps_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Maps_MouseDoubleClick(object sender, MouseButtonEventArgs e) // Добавление метки
         {
             if (e.ChangedButton == MouseButton.Left)
             {
 
-                double X = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lng;
-                double Y = Maps.FromLocalToLatLng(System.Windows.Forms.Control.MousePosition.X, System.Windows.Forms.Control.MousePosition.Y).Lat;
+                double latitude = Maps.Position.Lat;
+                double longitude = Maps.Position.Lng;
 
-                double TransmittedX = Math.Round(X, 6);
-                double TransmittedY = Math.Round(Y, 6);
+                Coordinates.X = latitude;
+                Coordinates.Y = longitude;
 
 
-                Coordinates.Y = TransmittedY;
-                Coordinates.X = TransmittedX;
-
-                GMapMarker gMarker = new GMapMarker(new PointLatLng(Coordinates.Y, Coordinates.X));
+                GMapMarker gMarker = new GMapMarker(new PointLatLng(latitude, longitude));
 
 
                 gMarker.Shape = new Image()
@@ -118,11 +110,94 @@ namespace Invenco.View
                     Width = 20,
                     Height = 20,
                     ToolTip = "Метка",
-                    Visibility = Visibility.Visible
+                    Visibility = Visibility.Visible,
+                    
 
                 };
                 Maps.Markers.Add(gMarker);
+                MapsEntity.GMapMarker = gMarker;
+                MapsEntity.control = Maps;
+
+                new AddMarker().ShowDialog();
+
+                
+
+
+                
+
+
+            }
+
+           
+        }
+
+        private  void ClearMarkers()
+        {
+            Maps.Markers.Clear();
+            
+        }
+
+        private  void LoadMarkers()
+        {
+            ClearMarkers();
+
+            string query = "SELECT Latitude, Longitude, Name FROM Markers";
+
+            using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    double latitude = (double)row["Latitude"];
+                    double longitude = (double)row["Longitude"];
+                    string name = (string)row["Name"];
+
+                    var marker = new GMapMarker(new PointLatLng(latitude, longitude))
+                    {
+                        Shape= new Image()
+                        {
+                            Source = new BitmapImage(new Uri("C:\\Users\\1\\Desktop\\Pet_Project\\Invenco\\Invenco\\Image\\MarkerCheck.png")),
+                            Width = 20,
+                            Height = 20,
+                            ToolTip = name,
+                            Visibility = Visibility.Visible,
+                        }
+                    };
+                    Maps.Markers.Add(marker);
+
+                  
+
+                    
+                }
             }
         }
+
+        private void AddMarker()
+        {
+            double latitude = Maps.Position.Lat;
+            double longitude = Maps.Position.Lng;
+            string name = "Маркер";
+
+            string query = "INSERT INTO Markers (Latitude, Longitude, Name) VALUES (@Latitude, @Longitude, @Name)";
+
+            using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("MarkerID", ConnectEntity.CountMarkers);
+                command.Parameters.AddWithValue("Latitude", latitude);
+                command.Parameters.AddWithValue("Longitude", longitude);
+                command.Parameters.AddWithValue("Name", name);
+
+                command.ExecuteNonQuery();
+            }
+
+        }
+
+       
     }
 }
