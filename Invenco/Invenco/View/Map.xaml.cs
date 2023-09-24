@@ -38,13 +38,14 @@ namespace Invenco.View
     /// </summary>
     public partial class Map : Window
     {
-     
+      
         
         public Map()
         {
             InitializeComponent();
 
             Loaded += Maps_Loaded;
+            
             
 
         }
@@ -91,6 +92,7 @@ namespace Invenco.View
 
         private void Maps_MouseDoubleClick(object sender, MouseButtonEventArgs e) // Добавление метки
         {
+
             if (e.ChangedButton == MouseButton.Left)
             {
 
@@ -109,7 +111,7 @@ namespace Invenco.View
                     Source = new BitmapImage(new Uri("C:\\Users\\1\\Desktop\\Pet_Project\\Invenco\\Invenco\\Image\\MarkerCheck.png")),
                     Width = 20,
                     Height = 20,
-                    ToolTip = "Метка",
+                    ToolTip = 
                     Visibility = Visibility.Visible,
                     
 
@@ -121,11 +123,6 @@ namespace Invenco.View
                 new AddMarker().ShowDialog();
 
                 
-
-
-                
-
-
             }
 
            
@@ -139,9 +136,12 @@ namespace Invenco.View
 
         private  void LoadMarkers()
         {
+
+
+
             ClearMarkers();
 
-            string query = "SELECT Latitude, Longitude, Name FROM Markers";
+            string query = "Select Invertarization.name, Latitude, Longitude, cabinet from Markers Join Invertarization on Invertarization.MarkersID=Markers.MarkerID";
 
             using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
             {
@@ -154,6 +154,13 @@ namespace Invenco.View
                     double latitude = (double)row["Latitude"];
                     double longitude = (double)row["Longitude"];
                     string name = (string)row["Name"];
+                    string cabinet = (string)row["cabinet"];
+
+                    System.Windows.Controls.ToolTip toolTip = new System.Windows.Controls.ToolTip();
+                    StackPanel stackPanelToolTip = new StackPanel();
+                    stackPanelToolTip.Children.Add(new System.Windows.Controls.TextBlock { Text = name });
+                    stackPanelToolTip.Children.Add(new System.Windows.Controls.TextBlock { Text = cabinet  });
+                    toolTip.Content = stackPanelToolTip;
 
                     var marker = new GMapMarker(new PointLatLng(latitude, longitude))
                     {
@@ -162,17 +169,24 @@ namespace Invenco.View
                             Source = new BitmapImage(new Uri("C:\\Users\\1\\Desktop\\Pet_Project\\Invenco\\Invenco\\Image\\MarkerCheck.png")),
                             Width = 20,
                             Height = 20,
-                            ToolTip = name,
+                            ToolTip = toolTip,
                             Visibility = Visibility.Visible,
                         }
+                        
                     };
                     Maps.Markers.Add(marker);
+
+                    
+                    
+                    
 
                   
 
                     
                 }
+
             }
+            
         }
 
         private void AddMarker()
@@ -198,6 +212,10 @@ namespace Invenco.View
 
         }
 
+
+      
+
        
+
     }
 }

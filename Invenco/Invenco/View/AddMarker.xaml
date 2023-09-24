@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AddMarker" Height="450" Width="500" WindowStyle="None"
-         MaxHeight="450" MaxWidth="500">
+         MaxHeight="450" MaxWidth="500" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Width="Auto" Height="Auto" VerticalAlignment="Top" ClipToBounds="True"
                     Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Row="0" >
@@ -26,22 +26,39 @@
                 <TextBlock Text="Добавление метки" FontSize="22" HorizontalAlignment="Center"/>
             </Expander.Header>
             <StackPanel>
-                <TextBox x:Name="InvertNumberTB" Style="{StaticResource Textbox1}"/>
+                <TextBox x:Name="InvertNumberTB" materialDesign:HintAssist.HelperText="Инвентарный номер" Style="{StaticResource Textbox1}"/>
                 <TextBox x:Name="NameInvertarizationTB" Style="{StaticResource Textbox1}"/>
                 <ComboBox x:Name="Category_CB" FontSize="20" Margin="5,5" DisplayMemberPath="CategoryName"
                           materialDesign:HintAssist.Hint="Выбор категории"/>
 
-                <ComboBox x:Name="StatusNameCB" FontSize="20" Margin="5,5" DisplayMemberPath="CategoryName"
+                <ComboBox x:Name="StatusNameCB" FontSize="20" Margin="5,5" DisplayMemberPath="StatusName"
                           materialDesign:HintAssist.Hint="Выбор статуса"/>
 
                 <TextBox x:Name="cabinetTB" Style="{StaticResource Textbox1}"/>
                 <DatePicker Language="Ru-Ru"  FontSize="20" materialDesign:HintAssist.Hint="Выбирите дату"
                             Name="DateEnd_DataPicker" />
-                <CheckBox >
+                <CheckBox x:Name="Written" Visibility="Collapsed" >
                     <CheckBox.Content>
                         <TextBlock Text="Списан" FontSize="20" />
                     </CheckBox.Content>
                 </CheckBox>
+
+                <Button Style="{x:Null}" Margin="0,10,0,0" x:Name="AddMarker1"  Height="42" Width="375"  FontSize="20"
+                            Background="DodgerBlue" Opacity="0.9" Foreground="White" Click="AddMarker1_Click"   >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconEntypo Kind="AddToList"  Style="{StaticResource menuButtonIcon_Person_data_profile}" Width="25" Height="25" />
+                        <TextBlock Text="Добавить" Foreground="White" FontWeight="Bold" FontSize="20" />
+
+                    </StackPanel>
+
+                </Button>
 
             </StackPanel>
         </Expander>

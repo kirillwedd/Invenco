@@ -23,8 +23,10 @@ namespace Invenco.Entity
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> WrittenOff { get; set; }
         public string StatusName { get; set; }
+        public Nullable<int> IdMovomentLog { get; set; }
     
         public virtual Markers Markers { get; set; }
         public virtual MovomentLog MovomentLog { get; set; }
+        public virtual MovomentLog MovomentLog1 { get; set; }
     }
 }

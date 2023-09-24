@@ -28,6 +28,7 @@
     <Property Name="EndDate" Type="date" />
     <Property Name="WrittenOff" Type="bit" />
     <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdMovomentLog" Type="int" />
   </EntityType>
   <EntityType Name="Markers">
     <Key>
@@ -43,10 +44,10 @@
       <PropertyRef Name="IdMovomentLog" />
     </Key>
     <Property Name="IdMovomentLog" Type="int" Nullable="false" />
+    <Property Name="InvertNumber" Type="int" Nullable="false" />
     <Property Name="Where_from" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Where_to" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateMov" Type="date" Nullable="false" />
-    <Property Name="InvertNumber" Type="int" />
   </EntityType>
   <EntityType Name="Person_data">
     <Key>
@@ -83,14 +84,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Invertarization_MovomentLog">
-    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="1" />
+    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="0..1" />
     <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MovomentLog">
         <PropertyRef Name="IdMovomentLog" />
       </Principal>
       <Dependent Role="Invertarization">
-        <PropertyRef Name="InvertNumber" />
+        <PropertyRef Name="IdMovomentLog" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

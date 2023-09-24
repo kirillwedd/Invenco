@@ -33,6 +33,7 @@
           <Property Name="EndDate" Type="date" />
           <Property Name="WrittenOff" Type="bit" />
           <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdMovomentLog" Type="int" />
         </EntityType>
         <EntityType Name="Markers">
           <Key>
@@ -48,10 +49,10 @@
             <PropertyRef Name="IdMovomentLog" />
           </Key>
           <Property Name="IdMovomentLog" Type="int" Nullable="false" />
+          <Property Name="InvertNumber" Type="int" Nullable="false" />
           <Property Name="Where_from" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Where_to" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateMov" Type="date" Nullable="false" />
-          <Property Name="InvertNumber" Type="int" />
         </EntityType>
         <EntityType Name="Person_data">
           <Key>
@@ -88,14 +89,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Invertarization_MovomentLog">
-          <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="1" />
+          <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="0..1" />
           <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MovomentLog">
               <PropertyRef Name="IdMovomentLog" />
             </Principal>
             <Dependent Role="Invertarization">
-              <PropertyRef Name="InvertNumber" />
+              <PropertyRef Name="IdMovomentLog" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -150,6 +151,8 @@
           <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Markers" Relationship="Self.FK_Invertarization_Markers1" FromRole="Invertarization" ToRole="Markers" />
           <NavigationProperty Name="MovomentLog" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="Invertarization" ToRole="MovomentLog" />
+          <Property Name="IdMovomentLog" Type="Int32" />
+          <NavigationProperty Name="MovomentLog1" Relationship="PETBASEModel.FK_Invertarization_MovomentLog1" FromRole="Invertarization" ToRole="MovomentLog" />
         </EntityType>
         <EntityType Name="Markers">
           <Key>
@@ -169,8 +172,9 @@
           <Property Name="Where_from" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Where_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateMov" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="InvertNumber" Type="Int32" />
+          <Property Name="InvertNumber" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Invertarization" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="MovomentLog" ToRole="Invertarization" />
+          <NavigationProperty Name="Invertarization1" Relationship="PETBASEModel.FK_Invertarization_MovomentLog1" FromRole="MovomentLog" ToRole="Invertarization" />
         </EntityType>
         <EntityType Name="Person_data">
           <Key>
@@ -234,7 +238,23 @@
             <End Role="MovomentLog" EntitySet="MovomentLog" />
             <End Role="Invertarization" EntitySet="Invertarization" />
           </AssociationSet>
+          <AssociationSet Name="FK_Invertarization_MovomentLog1" Association="PETBASEModel.FK_Invertarization_MovomentLog1">
+            <End Role="MovomentLog" EntitySet="MovomentLog" />
+            <End Role="Invertarization" EntitySet="Invertarization" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Invertarization_MovomentLog1">
+          <End Type="PETBASEModel.MovomentLog" Role="MovomentLog" Multiplicity="0..1" />
+          <End Type="PETBASEModel.Invertarization" Role="Invertarization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovomentLog">
+              <PropertyRef Name="IdMovomentLog" />
+            </Principal>
+            <Dependent Role="Invertarization">
+              <PropertyRef Name="IdMovomentLog" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -260,6 +280,7 @@
           <EntitySetMapping Name="Invertarization">
             <EntityTypeMapping TypeName="PETBASEModel.Invertarization">
               <MappingFragment StoreEntitySet="Invertarization">
+                <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
                 <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
                 <ScalarProperty Name="MarkersID" ColumnName="MarkersID" />
                 <ScalarProperty Name="name" ColumnName="name" />

@@ -27,6 +27,7 @@ namespace Invenco.View
             MapsEntity.LoadedSource(Category_CB, StatusNameCB);
             MapsEntity.BlokesDate(DateEnd_DataPicker);
             
+            
          
         }
 
@@ -41,6 +42,9 @@ namespace Invenco.View
             WindowsControls.Roll_Up_Mt(this);
         }
 
-       
+        private void AddMarker1_Click(object sender, RoutedEventArgs e)
+        {
+            MapsEntity.AddMarker(NameInvertarizationTB, InvertNumberTB, Category_CB, cabinetTB, StatusNameCB, DateEnd_DataPicker);
+        }
     }
 }

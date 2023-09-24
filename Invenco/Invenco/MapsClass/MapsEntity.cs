@@ -9,54 +9,62 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace Invenco.MapsClass
 {
     public static class MapsEntity
     {
+   
+
         public static GMapMarker GMapMarker;
 
         public static GMapControl control;
-     
+
         public static string connectionString = "Data Source=DESKTOP-HADQ0N5\\SQLSERVER;Initial Catalog=PETBASE;Integrated Security=True";
        
         public static void AddMarker(System.Windows.Controls.TextBox _nameTextBox, System.Windows.Controls.TextBox _textBoxInvertNumber,
                                      ComboBox _comboBoxCategory, System.Windows.Controls.TextBox _cabinet, ComboBox _comboBoxStatus,
                                      DatePicker _datePickerENdDate)
         {
-            ConnectEntity.db.Markers.Add(new Markers()
-            {
-                MarkerID = ConnectEntity.CountMarkers,
-                Latitude = Coordinates.X,
-                Longitude = Coordinates.Y,
-                Name=_nameTextBox.Text
-            });
+           
+                ConnectEntity.db.Markers.Add(new Markers()
+                {
+                    MarkerID = ConnectEntity.CountMarkers,
+                    Latitude = Coordinates.X,
+                    Longitude = Coordinates.Y,
+                    Name = _nameTextBox.Text
+                });
 
 
-            ConnectEntity.db.Invertarization.Add(new Invertarization()
-            {
-                InvertNumber =int.Parse(_textBoxInvertNumber.Text),
-                MarkersID = ConnectEntity.CountMarkers,
-                name= _nameTextBox.Text,
-                Category=_comboBoxCategory.Text,
-                StartDate=DateTime.Today,
-                cabinet=_cabinet.Text,
-                EndDate=_datePickerENdDate.SelectedDate,
-                WrittenOff=false,
-                StatusName=_comboBoxStatus.Text
-               
+                ConnectEntity.db.Invertarization.Add(new Invertarization()
+                {
+                    InvertNumber = int.Parse(_textBoxInvertNumber.Text),
+                    MarkersID = ConnectEntity.CountMarkers,
+                    name = _nameTextBox.Text,
+                    Category = _comboBoxCategory.Text,
+                    StartDate = DateTime.Today,
+                    cabinet = _cabinet.Text,
+                    EndDate = _datePickerENdDate.SelectedDate,
+                    
+                    StatusName = _comboBoxStatus.Text
 
 
-            });
-            ConnectEntity.db.SaveChanges();
+
+                });
+                ConnectEntity.db.SaveChanges();
+            
+          
         }
 
         public static void LoadedSource(ComboBox _comboBoxCategory, ComboBox _comboBoxStatus)

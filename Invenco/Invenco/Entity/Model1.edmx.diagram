@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="PETBASEModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="PETBASEModel.FK_Invertarization_Markers1" ManuallyRouted="false" />
         <AssociationConnector Association="PETBASEModel.FK_Invertarization_MovomentLog" ManuallyRouted="false" />
+        <AssociationConnector Association="PETBASEModel.FK_Invertarization_MovomentLog1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

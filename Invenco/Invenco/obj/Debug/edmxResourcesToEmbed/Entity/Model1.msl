@@ -20,6 +20,7 @@
     <EntitySetMapping Name="Invertarization">
       <EntityTypeMapping TypeName="PETBASEModel.Invertarization">
         <MappingFragment StoreEntitySet="Invertarization">
+          <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
           <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
           <ScalarProperty Name="MarkersID" ColumnName="MarkersID" />
           <ScalarProperty Name="name" ColumnName="name" />
