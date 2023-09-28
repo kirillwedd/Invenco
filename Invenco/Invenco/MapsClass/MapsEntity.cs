@@ -1,6 +1,7 @@
 ﻿using GMap.NET;
 using GMap.NET.WindowsPresentation;
 using Invenco.ClassEntity;
+using Invenco.ClassImage;
 using Invenco.ClassTransmitted;
 using Invenco.Entity;
 using Invenco.View;
@@ -10,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace Invenco.MapsClass
        
         public static void AddMarker(System.Windows.Controls.TextBox _nameTextBox, System.Windows.Controls.TextBox _textBoxInvertNumber,
                                      ComboBox _comboBoxCategory, System.Windows.Controls.TextBox _cabinet, ComboBox _comboBoxStatus,
-                                     DatePicker _datePickerENdDate)
+                                     DatePicker _datePickerENdDate,System.Windows.Controls.Image image)
         {
            
                 ConnectEntity.db.Markers.Add(new Markers()
@@ -47,6 +49,7 @@ namespace Invenco.MapsClass
                 });
 
 
+            
                 ConnectEntity.db.Invertarization.Add(new Invertarization()
                 {
                     InvertNumber = int.Parse(_textBoxInvertNumber.Text),
@@ -56,12 +59,14 @@ namespace Invenco.MapsClass
                     StartDate = DateTime.Today,
                     cabinet = _cabinet.Text,
                     EndDate = _datePickerENdDate.SelectedDate,
-                    
-                    StatusName = _comboBoxStatus.Text
+                    WrittenOff=false,
+                    StatusName = _comboBoxStatus.Text,
+                    Image_Invertarization=AddImage.Photo
 
 
 
-                });
+
+                });;
                 ConnectEntity.db.SaveChanges();
             
           

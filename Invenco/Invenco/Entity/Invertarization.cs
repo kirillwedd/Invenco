@@ -24,6 +24,7 @@ namespace Invenco.Entity
         public Nullable<bool> WrittenOff { get; set; }
         public string StatusName { get; set; }
         public Nullable<int> IdMovomentLog { get; set; }
+        public byte[] Image_Invertarization { get; set; }
     
         public virtual Markers Markers { get; set; }
         public virtual MovomentLog MovomentLog { get; set; }

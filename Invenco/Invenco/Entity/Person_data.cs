@@ -22,6 +22,6 @@ namespace Invenco.Entity
         public string Patronymic { get; set; }
         public byte[] Image { get; set; }
 
-        public string FullName => Name + " " + LastName; 
+        public string FullName => LastName + " " + Name;
     }
 }

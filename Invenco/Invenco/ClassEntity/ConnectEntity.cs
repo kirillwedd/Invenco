@@ -23,6 +23,8 @@ namespace Invenco.ClassEntity
         private static int _category=db.Category.Count() + 1;
 
         public static Person_data person_Data { get; set; }
+
+        public static Invertarization invertarization { get; set; }
         
 
         public static int CountPerson

@@ -2,6 +2,8 @@
 using Invenco.ClassTransmitted;
 using Invenco.Entity;
 using Invenco.View;
+using MahApps.Metro.IconPacks;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -12,14 +14,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls.Adapters;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MaterialDesignThemes.Wpf.Converters;
+using System.Globalization;
+using ImageProcessor.Processors;
+using MahApps.Metro.Controls;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices.ComTypes;
+
+
 
 namespace Invenco.ClassImage
 {
     static class AddImage
     {
         public static byte[] Photo { get; set; }
+        public static Geometry Geometry { get; private set; }
+      
 
         private static Person_data Person_Data;
 
@@ -63,6 +77,61 @@ namespace Invenco.ClassImage
             
            
         }
+
+
+        public static void AddImageProfile( System.Windows.Controls.Image image, string _filter)
+        {
+            try
+            {
+                OpenFileDialog create = new OpenFileDialog();
+                create.Filter = _filter;
+                if (create.ShowDialog() == true)
+                {
+                    image.Source = new BitmapImage(new Uri(create.FileName)); 
+                    byte[] bytes = File.ReadAllBytes(create.FileName);
+                    Photo = bytes;
+
+
+                }
+               
+              
+            }
+            catch
+            {
+            }
+        }
+        
+
+       
+
+
+        public static void StubImage(System.Windows.Controls.Image image)
+        {
+            string expectedImagePath = "pack://application:,,,/Image/AddToList.png";
+
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(expectedImagePath, UriKind.RelativeOrAbsolute);
+            bitmapImage.EndInit();
+
+            if (image.Source.ToString()==expectedImagePath.ToString()) 
+            {
+                image.Source = new BitmapImage(new Uri("\\Image\\StubImage.png", UriKind.RelativeOrAbsolute));
+                byte[] imageBytes;
+
+                ImageSource imageSource = image.Source;
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    BitmapFrame bitmapFrame = BitmapFrame.Create((BitmapSource)imageSource);
+                    BitmapEncoder bitmapEncoder = new PngBitmapEncoder();
+                    bitmapEncoder.Frames.Add(bitmapFrame);
+                    bitmapEncoder.Save(stream);
+                    imageBytes = stream.ToArray();
+                    Photo = imageBytes;
+                }
+            }
+        }
+
         public static  BitmapSource ByteToArrayToImage(byte[] buffer, Person_data person_Data)
         {
             if (person_Data.Image != null)
@@ -74,6 +143,18 @@ namespace Invenco.ClassImage
                 
             }
             return null;
+        }
+
+        public static BitmapSource ByteToArrayToImageInvertarization(byte[] buffer)
+        {
+            
+                using (var Stream = new MemoryStream(buffer))
+                {
+                    return BitmapFrame.Create(Stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                }
+
+            
+          
         }
 
     }

@@ -29,6 +29,7 @@
     <Property Name="WrittenOff" Type="bit" />
     <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IdMovomentLog" Type="int" />
+    <Property Name="Image_Invertarization" Type="image" />
   </EntityType>
   <EntityType Name="Markers">
     <Key>

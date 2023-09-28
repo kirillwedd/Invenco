@@ -34,6 +34,7 @@
           <Property Name="WrittenOff" Type="bit" />
           <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IdMovomentLog" Type="int" />
+          <Property Name="Image_Invertarization" Type="image" />
         </EntityType>
         <EntityType Name="Markers">
           <Key>
@@ -153,6 +154,7 @@
           <NavigationProperty Name="MovomentLog" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="Invertarization" ToRole="MovomentLog" />
           <Property Name="IdMovomentLog" Type="Int32" />
           <NavigationProperty Name="MovomentLog1" Relationship="PETBASEModel.FK_Invertarization_MovomentLog1" FromRole="Invertarization" ToRole="MovomentLog" />
+          <Property Name="Image_Invertarization" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Markers">
           <Key>
@@ -280,6 +282,7 @@
           <EntitySetMapping Name="Invertarization">
             <EntityTypeMapping TypeName="PETBASEModel.Invertarization">
               <MappingFragment StoreEntitySet="Invertarization">
+                <ScalarProperty Name="Image_Invertarization" ColumnName="Image_Invertarization" />
                 <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
                 <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
                 <ScalarProperty Name="MarkersID" ColumnName="MarkersID" />

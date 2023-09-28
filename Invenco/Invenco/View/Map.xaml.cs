@@ -30,6 +30,8 @@ using System.Data;
 using Invenco.MapsClass;
 using Invenco.Entity;
 using Invenco.ClassEntity;
+using Invenco.ClassImage;
+using System.IO;
 
 namespace Invenco.View
 {
@@ -38,15 +40,21 @@ namespace Invenco.View
     /// </summary>
     public partial class Map : Window
     {
-      
-        
+
+        private Invertarization Invertarization1 { get; set; }
         public Map()
         {
             InitializeComponent();
-
+            
             Loaded += Maps_Loaded;
+            Invertarization invertarization2= new Invertarization();
+            Invertarization1=invertarization2;
+
+          
             
             
+            
+
 
         }
 
@@ -141,7 +149,7 @@ namespace Invenco.View
 
             ClearMarkers();
 
-            string query = "Select Invertarization.name, Latitude, Longitude, cabinet from Markers Join Invertarization on Invertarization.MarkersID=Markers.MarkerID";
+            string query = "Select Invertarization.name, Latitude, Longitude, cabinet, Image_Invertarization  from Markers Join Invertarization on Invertarization.MarkersID=Markers.MarkerID";
 
             using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
             {
@@ -155,12 +163,27 @@ namespace Invenco.View
                     double longitude = (double)row["Longitude"];
                     string name = (string)row["Name"];
                     string cabinet = (string)row["cabinet"];
+                    byte[] image = (byte[])row["Image_Invertarization"];
 
+                    
+
+                    
                     System.Windows.Controls.ToolTip toolTip = new System.Windows.Controls.ToolTip();
-                    StackPanel stackPanelToolTip = new StackPanel();
-                    stackPanelToolTip.Children.Add(new System.Windows.Controls.TextBlock { Text = name });
-                    stackPanelToolTip.Children.Add(new System.Windows.Controls.TextBlock { Text = cabinet  });
-                    toolTip.Content = stackPanelToolTip;
+                    StackPanel stackPanelMainToolTip = new StackPanel();
+                    StackPanel stackPanelImageToolTip  = new StackPanel();
+                    StackPanel stackPanelTextToolTip = new StackPanel();
+                    stackPanelMainToolTip.Orientation= System.Windows.Controls.Orientation.Horizontal;
+                    stackPanelImageToolTip.Orientation=System.Windows.Controls.Orientation.Horizontal;
+                    stackPanelTextToolTip.Orientation = System.Windows.Controls.Orientation.Vertical;
+                    stackPanelTextToolTip.VerticalAlignment = VerticalAlignment.Center;
+                    stackPanelImageToolTip.Children.Add(new Image { Source=AddImage.ByteToArrayToImageInvertarization(image),
+                                                                   Height=100, Width=100});
+                    stackPanelTextToolTip.Children.Add(new TextBlock { Text = name });
+                    stackPanelTextToolTip.Children.Add(new TextBlock { Text= cabinet });
+                    stackPanelMainToolTip.Children.Add(stackPanelImageToolTip);
+                    stackPanelMainToolTip.Children.Add(stackPanelTextToolTip);
+                    toolTip.Content= stackPanelMainToolTip;
+                  
 
                     var marker = new GMapMarker(new PointLatLng(latitude, longitude))
                     {

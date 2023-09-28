@@ -1,4 +1,5 @@
 ﻿using Invenco.Class;
+using Invenco.ClassImage;
 using Invenco.MapsClass;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,17 @@ namespace Invenco.View
 
         private void AddMarker1_Click(object sender, RoutedEventArgs e)
         {
-            MapsEntity.AddMarker(NameInvertarizationTB, InvertNumberTB, Category_CB, cabinetTB, StatusNameCB, DateEnd_DataPicker);
+            AddImage.StubImage(InvenatarizationImage);
+            MapsEntity.AddMarker(NameInvertarizationTB, InvertNumberTB, Category_CB, cabinetTB, StatusNameCB, DateEnd_DataPicker, InvenatarizationImage);         
+            Hide();
         }
+
+        private void InvenatarizationImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            AddImage.AddImageProfile(InvenatarizationImage, "PNG(*.png)|*.png|JPG(*.jpg)|*.jpg|JPEG(*.jpeg)|*.jpeg" );
+            
+        }
+
+       
     }
 }

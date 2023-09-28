@@ -22,45 +22,50 @@
 
         <Expander Grid.Row="1" Grid.RowSpan="2" >
             <Expander.Header>
-                
                 <TextBlock Text="Добавление метки" FontSize="22" HorizontalAlignment="Center"/>
             </Expander.Header>
-            <StackPanel>
-                <TextBox x:Name="InvertNumberTB" materialDesign:HintAssist.HelperText="Инвентарный номер" Style="{StaticResource Textbox1}"/>
-                <TextBox x:Name="NameInvertarizationTB" Style="{StaticResource Textbox1}"/>
-                <ComboBox x:Name="Category_CB" FontSize="20" Margin="5,5" DisplayMemberPath="CategoryName"
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBox x:Name="InvertNumberTB" materialDesign:HintAssist.HelperText="Инвентарный номер" Style="{StaticResource Textbox1}"/>
+                    <TextBox x:Name="NameInvertarizationTB" Style="{StaticResource Textbox1}"/>
+                    <ComboBox x:Name="Category_CB" FontSize="20" Margin="5,5" DisplayMemberPath="CategoryName"
                           materialDesign:HintAssist.Hint="Выбор категории"/>
 
-                <ComboBox x:Name="StatusNameCB" FontSize="20" Margin="5,5" DisplayMemberPath="StatusName"
+                    <ComboBox x:Name="StatusNameCB" FontSize="20" Margin="5,5" DisplayMemberPath="StatusName"
                           materialDesign:HintAssist.Hint="Выбор статуса"/>
 
-                <TextBox x:Name="cabinetTB" Style="{StaticResource Textbox1}"/>
-                <DatePicker Language="Ru-Ru"  FontSize="20" materialDesign:HintAssist.Hint="Выбирите дату"
+                    <TextBox x:Name="cabinetTB" Style="{StaticResource Textbox1}"/>
+                    <DatePicker Language="Ru-Ru"  FontSize="20" materialDesign:HintAssist.Hint="Выбирите дату"
                             Name="DateEnd_DataPicker" />
-                <CheckBox x:Name="Written" Visibility="Collapsed" >
-                    <CheckBox.Content>
-                        <TextBlock Text="Списан" FontSize="20" />
-                    </CheckBox.Content>
-                </CheckBox>
+                    <CheckBox x:Name="Written" Visibility="Collapsed" >
+                        <CheckBox.Content>
+                            <TextBlock Text="Списан" FontSize="20" />
+                        </CheckBox.Content>
+                    </CheckBox>
+                    <Image Width="490" Height="200" Margin="10" x:Name="InvenatarizationImage" 
+                           Source="\Image\AddToList.png" MouseDown="InvenatarizationImage_MouseDown"
+                           ToolTip="Здесь можно поставить фотографию" />
 
-                <Button Style="{x:Null}" Margin="0,10,0,0" x:Name="AddMarker1"  Height="42" Width="375"  FontSize="20"
+                    
+                    <Button Style="{x:Null}" Margin="0,10,0,0" x:Name="AddMarker1"  Height="42" Width="375"  FontSize="20"
                             Background="DodgerBlue" Opacity="0.9" Foreground="White" Click="AddMarker1_Click"   >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
 
-                        </Style>
-                    </Button.Resources>
+                            </Style>
+                        </Button.Resources>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconEntypo Kind="AddToList"  Style="{StaticResource menuButtonIcon_Person_data_profile}" Width="25" Height="25" />
-                        <TextBlock Text="Добавить" Foreground="White" FontWeight="Bold" FontSize="20" />
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconEntypo Kind="AddToList"  Style="{StaticResource menuButtonIcon_Person_data_profile}" Width="25" Height="25" />
+                            <TextBlock Text="Добавить" Foreground="White" FontWeight="Bold" FontSize="20" />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                </Button>
+                    </Button>
 
-            </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
         </Expander>
 
 
