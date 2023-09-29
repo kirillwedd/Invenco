@@ -57,10 +57,14 @@
 
                 </Border>
                
-                    <TextBlock x:Name="FullName_tb"  Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                <TextBlock x:Name="FullName_tb"  Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                 DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"/>
+                
                 <TextBlock x:Name="FullPatronymic" Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                 DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"  />
+
+                <TextBlock x:Name="gg" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10" />
 
                 <Separator  DockPanel.Dock="Top" Height="0.8"  />
 

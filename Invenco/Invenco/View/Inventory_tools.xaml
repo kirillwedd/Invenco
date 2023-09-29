@@ -43,7 +43,7 @@
 
 
                     
-                        <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
+                    <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
                         <Ellipse.Fill>
                             <ImageBrush x:Name="PhotoEllipse" ImageSource="{Icon:MaterialDesignImage Kind=PhotoCamera, Brush=Gray}"/>
                         </Ellipse.Fill>

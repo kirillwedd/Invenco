@@ -32,6 +32,10 @@ using Invenco.Entity;
 using Invenco.ClassEntity;
 using Invenco.ClassImage;
 using System.IO;
+using System.Windows.Controls.Primitives;
+using System.ComponentModel;
+using System.Data.Entity;
+
 
 namespace Invenco.View
 {
@@ -42,6 +46,9 @@ namespace Invenco.View
     {
 
         private Invertarization Invertarization1 { get; set; }
+
+      
+       
         public Map()
         {
             InitializeComponent();
@@ -50,10 +57,14 @@ namespace Invenco.View
             Invertarization invertarization2= new Invertarization();
             Invertarization1=invertarization2;
 
-          
             
-            
-            
+
+
+
+
+
+
+
 
 
         }
@@ -149,7 +160,7 @@ namespace Invenco.View
 
             ClearMarkers();
 
-            string query = "Select Invertarization.name, Latitude, Longitude, cabinet, Image_Invertarization  from Markers Join Invertarization on Invertarization.MarkersID=Markers.MarkerID";
+            string query = "Select Invertarization.name, Markers.MarkerID, Latitude, Longitude, cabinet, Image_Invertarization  from Markers Join Invertarization on Invertarization.MarkersID=Markers.MarkerID";
 
             using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
             {
@@ -164,6 +175,8 @@ namespace Invenco.View
                     string name = (string)row["Name"];
                     string cabinet = (string)row["cabinet"];
                     byte[] image = (byte[])row["Image_Invertarization"];
+                   
+
 
                     
 
@@ -183,34 +196,42 @@ namespace Invenco.View
                     stackPanelMainToolTip.Children.Add(stackPanelImageToolTip);
                     stackPanelMainToolTip.Children.Add(stackPanelTextToolTip);
                     toolTip.Content= stackPanelMainToolTip;
-                  
+
+                    System.Windows.Controls.ContextMenu menu = new System.Windows.Controls.ContextMenu();
+                    System.Windows.Controls.MenuItem menuDelete = new System.Windows.Controls.MenuItem();
+                    menuDelete.Header= "Удалить";
+                    menuDelete.Click += MenuDelete_Click;
+                    menu.Items.Add(menuDelete);
 
                     var marker = new GMapMarker(new PointLatLng(latitude, longitude))
                     {
-                        Shape= new Image()
+                        Shape = new Image()
                         {
                             Source = new BitmapImage(new Uri("C:\\Users\\1\\Desktop\\Pet_Project\\Invenco\\Invenco\\Image\\MarkerCheck.png")),
                             Width = 20,
                             Height = 20,
                             ToolTip = toolTip,
                             Visibility = Visibility.Visible,
+                            ContextMenu=menu
+                            
+                           
+
+
+
                         }
                         
                     };
                     Maps.Markers.Add(marker);
 
                     
-                    
-                    
-
-                  
-
-                    
                 }
 
+       
             }
             
         }
+
+       
 
         private void AddMarker()
         {
@@ -235,10 +256,16 @@ namespace Invenco.View
 
         }
 
+        private void MenuDelete_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectEntity.db.Markers.FirstOrDefault(m=>m.MarkerID==)
 
-      
+          
+        }
 
        
-
     }
+
+
+    
 }
