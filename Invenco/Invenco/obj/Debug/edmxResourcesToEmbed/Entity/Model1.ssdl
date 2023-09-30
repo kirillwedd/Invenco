@@ -73,7 +73,9 @@
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Invertarization_Markers1">
-    <End Role="Markers" Type="Self.Markers" Multiplicity="1" />
+    <End Role="Markers" Type="Self.Markers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Markers">

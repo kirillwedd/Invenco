@@ -36,3 +36,17 @@ Where_from nvarchar(MAX) Not Null,
 Where_to nvarchar(MAX) Not Null,
 DateMov date Not NUll,
 InvertNumber int foreign key References Invertarization(InvertNumber))
+-----------------------------------------------------------------------------
+Журнал "История"
+Create table Inventory_History(
+InventoryID int Primary key Not null,
+HistoryMarkerID int Not Null,
+Name nvarchar(MAX) Not Null,
+Category nvarchar(MAX) Not Null,
+StartDate date Not Null,
+cabinet nvarchar(MAX) Null,
+EndDate date Not Null,
+WrittenOff bit Not Null,
+StatusName nvarchar(Max) Not Null,
+Image_invertarization image Null,
+HistoryMovomentLogID int Null)

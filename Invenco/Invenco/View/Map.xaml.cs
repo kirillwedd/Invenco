@@ -57,16 +57,6 @@ namespace Invenco.View
             Invertarization invertarization2= new Invertarization();
             Invertarization1=invertarization2;
 
-            
-
-
-
-
-
-
-
-
-
         }
 
         private void ClosesBt_Click(object sender, RoutedEventArgs e)
@@ -175,6 +165,7 @@ namespace Invenco.View
                     string name = (string)row["Name"];
                     string cabinet = (string)row["cabinet"];
                     byte[] image = (byte[])row["Image_Invertarization"];
+                    int ID = (int)row["MarkerID"];
                    
 
 
@@ -199,9 +190,15 @@ namespace Invenco.View
 
                     System.Windows.Controls.ContextMenu menu = new System.Windows.Controls.ContextMenu();
                     System.Windows.Controls.MenuItem menuDelete = new System.Windows.Controls.MenuItem();
+                    menuDelete.Tag = ID;
                     menuDelete.Header= "Удалить";
                     menuDelete.Click += MenuDelete_Click;
                     menu.Items.Add(menuDelete);
+                    
+
+
+                    
+                  
 
                     var marker = new GMapMarker(new PointLatLng(latitude, longitude))
                     {
@@ -212,17 +209,14 @@ namespace Invenco.View
                             Height = 20,
                             ToolTip = toolTip,
                             Visibility = Visibility.Visible,
-                            ContextMenu=menu
-                            
-                           
-
-
-
+                            ContextMenu=menu,                          
                         }
+                        
                         
                     };
                     Maps.Markers.Add(marker);
 
+                   
                     
                 }
 
@@ -233,37 +227,77 @@ namespace Invenco.View
 
        
 
-        private void AddMarker()
-        {
-            double latitude = Maps.Position.Lat;
-            double longitude = Maps.Position.Lng;
-            string name = "Маркер";
+        //private void AddMarker()
+        //{
+        //    double latitude = Maps.Position.Lat;
+        //    double longitude = Maps.Position.Lng;
+        //    string name = "Маркер";
 
-            string query = "INSERT INTO Markers (Latitude, Longitude, Name) VALUES (@Latitude, @Longitude, @Name)";
+        //    string query = "INSERT INTO Markers (Latitude, Longitude, Name) VALUES (@Latitude, @Longitude, @Name)";
 
-            using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
-            {
-                connection.Open();
+        //    using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
+        //    {
+        //        connection.Open();
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("MarkerID", ConnectEntity.CountMarkers);
-                command.Parameters.AddWithValue("Latitude", latitude);
-                command.Parameters.AddWithValue("Longitude", longitude);
-                command.Parameters.AddWithValue("Name", name);
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("MarkerID", ConnectEntity.CountMarkers);
+        //        command.Parameters.AddWithValue("Latitude", latitude);
+        //        command.Parameters.AddWithValue("Longitude", longitude);
+        //        command.Parameters.AddWithValue("Name", name);
 
-                command.ExecuteNonQuery();
-            }
+        //        command.ExecuteNonQuery();
+        //    }
 
-        }
+        //}
 
         private void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
-            ConnectEntity.db.Markers.FirstOrDefault(m=>m.MarkerID==)
+            try
+            {
+                if (System.Windows.MessageBox.Show("Маркер и связанные с ним записи удалены.", "Уведомление",  MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    System.Windows.Controls.MenuItem menu = sender as System.Windows.Controls.MenuItem;
+                    int MarkerID = (int)menu.Tag;
 
-          
+                    string connectionString = MapsEntity.connectionString;
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        // Удаляем маркер из таблицы Markers
+                        string deleteMarkerQuery = "DELETE FROM Markers WHERE MarkerID = @MarkerID";
+                        using (SqlCommand command = new SqlCommand(deleteMarkerQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@MarkerID", MarkerID);
+                            command.ExecuteNonQuery();
+                        }
+
+                        string deleteLocationsQuery = "DELETE FROM Invertarization WHERE MarkersID = @MarkersID";
+                        using (SqlCommand command = new SqlCommand(deleteLocationsQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@MarkersID", MarkerID);
+                            command.ExecuteNonQuery();
+                        }
+
+                        connection.Close();
+                    }
+                    System.Windows.MessageBox.Show("Маркер и связанные с ним записи удалены.", "Удаление");
+                    LoadMarkers();
+                   
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+
+
         }
 
        
+
+
     }
 
 

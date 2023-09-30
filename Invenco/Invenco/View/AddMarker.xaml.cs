@@ -48,6 +48,7 @@ namespace Invenco.View
             AddImage.StubImage(InvenatarizationImage);
             MapsEntity.AddMarker(NameInvertarizationTB, InvertNumberTB, Category_CB, cabinetTB, StatusNameCB, DateEnd_DataPicker, InvenatarizationImage);         
             Hide();
+          
         }
 
         private void InvenatarizationImage_MouseDown(object sender, MouseButtonEventArgs e)
