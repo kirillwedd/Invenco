@@ -99,7 +99,7 @@
                     </Button>
 
 
-                    <Button x:Name="MapBt" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
+                    <Button x:Name="MapBt" Style="{StaticResource menuButton}" Click="Map_Btn_Click"  >
                         <StackPanel x:Name="MapStack" Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="MapMarker"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Карта" Foreground="White" FontWeight="Bold" FontSize="15" />

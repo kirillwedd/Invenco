@@ -50,23 +50,14 @@ namespace Invenco.View
 
         private void MapBt_Click(object sender, RoutedEventArgs e)
         {
-
+            new Map().Show();
+            Hide();
         }
 
         private void MovLogBt_Click(object sender, RoutedEventArgs e)
         {
-
+            // Журнал перемещений
         }      
-
-        private void Close_BT_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EllipcePhoto_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
 
         private void AddInvertarization_Click(object sender, RoutedEventArgs e)
         {
@@ -77,9 +68,6 @@ namespace Invenco.View
                 AddEntityInvertarization.AddInventoryStatus(StatusTB);
                 AddEntityInvertarization.AddCategory(CategoryTB);
                 AddEntityInvertarization.MessageBuilder();
-                
-            
-
             }
             else
             {
@@ -87,6 +75,16 @@ namespace Invenco.View
                 AddEntityInvertarization.AddCategory(CategoryTB);
                 AddEntityInvertarization.MessageBugBuilder();
             }
+
+        }
+
+        private void InventoryLog_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KategoryStatus_Bt_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

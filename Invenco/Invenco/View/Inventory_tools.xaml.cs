@@ -74,7 +74,7 @@ namespace Invenco.View
 
         private void Invertarization_Btn_Click(object sender, RoutedEventArgs e)
         {
-            new Map().Show();
+            new Inventarization().Show();
             Hide();
         }
 
@@ -99,6 +99,12 @@ namespace Invenco.View
         private void Back_Left_chefron_BT_Click(object sender, RoutedEventArgs e)
         {
             new Avtorization().Show();
+            Hide();
+        }
+
+        private void Map_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            new Map().Show();
             Hide();
         }
     }

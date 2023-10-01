@@ -87,7 +87,20 @@
                         <StackPanel x:Name="MovLogStack" Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
                             <TextBlock Text="Журнал перемещений" Foreground="White" FontWeight="Bold" FontSize="15" />
+                        </StackPanel>
+                    </Button>
 
+                    <Button x:Name="InventoryLog" Style="{StaticResource menuButton}" Click="InventoryLog_Click"  >
+                        <StackPanel x:Name="InventoryLogStack" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Журнал инвентаризации" Foreground="White" FontWeight="Bold" FontSize="15" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="KategoryStatus" Style="{StaticResource menuButton}" Click="KategoryStatus_Bt_Click"  >
+                        <StackPanel x:Name="KategoryStatusStack" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Категория и Статус" Foreground="White" FontWeight="Bold" FontSize="15" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -111,7 +124,8 @@
 
         </Border>
 
-        <StackPanel x:Name="MainStackPanel" Grid.Column="1" Grid.Row="1" Margin="0,45,0,0">
+        <!--Статус и категория-->
+            <StackPanel x:Name="MainStackPanel" Grid.Column="1" Grid.Row="1" Margin="0,45,0,0" Visibility="Hidden">
             <TextBlock FontSize="25" Text="Заполнение данных" HorizontalAlignment="Center"/>
             <Expander x:Name="MainExpander" >
                 <Expander.Header>
@@ -160,17 +174,62 @@
 
             </Expander>
 
-            
+            </StackPanel>
+        <!--Статус и категория-->
 
-                
-          
+        <!--Журнал инвентаризации-->
+        <StackPanel x:Name="InventoryStack" Grid.Column="1" Grid.Row="1" Margin="0,45,0,0" Visibility="Hidden" >
+            <ListView >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Path=Invertarization.name}" Width="45"/>
+                                <Image Source="{Binding Path=Image_Invertarization}"/>
+                            </StackPanel>
 
-
-
-
-
+                            <StackPanel Orientation="Vertical" >
+                                <TextBlock  Text="{Binding Path=Invertarization.Category}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=StartDate}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=cabinet}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=EndDate}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=WrittenOff}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=Invertarization.StatusName}" Width="Auto"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </StackPanel>
+        <!--Журнал инвентаризации-->
+
+        <!--Журнал перемещений-->
+        <StackPanel x:Name="MovomentLogStack" Grid.Column="1" Grid.Row="1" Margin="0,45,0,0" >
+            <ListView >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Path=Invertarization.name}" Width="45"/>
+                                <Image Source="{Binding Path=Image_Invertarization}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" >
+                                <TextBlock  Text="{Binding Path=Where_from}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=Where_to}" Width="Auto"/>
+                                <TextBlock  Text="{Binding Path=DateMov}" Width="Auto"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+
+        <!--Журнал перемещений-->
+
+      
 
 
     </Grid>
