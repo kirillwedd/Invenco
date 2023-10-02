@@ -355,3 +355,5 @@ C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Person_data_profil
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Person_data_profile.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\AddMarker.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\AddMarker.baml
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\HistoryInvertarization.g.cs
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\HistoryInvertarization.baml

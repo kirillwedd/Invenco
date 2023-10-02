@@ -107,5 +107,10 @@ namespace Invenco.View
             new Map().Show();
             Hide();
         }
+
+        private void HistoryLog_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

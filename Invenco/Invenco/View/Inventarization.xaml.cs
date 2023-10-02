@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Invenco.Class;
 using Invenco.ClassEntity;
+using Invenco.ClassImage;
 using Invenco.ClassInvertarization;
 
 namespace Invenco.View
@@ -25,6 +26,9 @@ namespace Invenco.View
         public Inventarization()
         {
             InitializeComponent();
+            FullName_tb.Text = ConnectEntity.person_Data.FullName;
+            FullPatronymic.Text = ConnectEntity.person_Data.Patronymic;
+            PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(ConnectEntity.person_Data.Image, ConnectEntity.person_Data);
         }
 
         private void Roll_up_Bt_Click(object sender, RoutedEventArgs e)
@@ -56,12 +60,15 @@ namespace Invenco.View
 
         private void MovLogBt_Click(object sender, RoutedEventArgs e)
         {
-            // Журнал перемещений
+            MovomentLogStack.Visibility = Visibility.Visible;
+            Status_CategoryStack.Visibility = Visibility.Hidden;
+            InventoryStack.Visibility = Visibility.Hidden;
+
         }      
 
         private void AddInvertarization_Click(object sender, RoutedEventArgs e)
         {
-            int countsTextboxCount = AddEntityInvertarization.CountTextBoxesStackPanel(MainStackPanel);
+            int countsTextboxCount = AddEntityInvertarization.CountTextBoxesStackPanel(Status_CategoryStack);
             if (countsTextboxCount != 2 )
             {
 
@@ -80,12 +87,32 @@ namespace Invenco.View
 
         private void InventoryLog_Click(object sender, RoutedEventArgs e)
         {
+            InventoryStack.Visibility = Visibility.Visible;
+            Status_CategoryStack.Visibility = Visibility.Hidden;
+            MovomentLogStack.Visibility = Visibility.Hidden;
 
         }
 
-        private void KategoryStatus_Bt_Click(object sender, RoutedEventArgs e)
+        private void CategoryStatus_Bt_Click(object sender, RoutedEventArgs e)
         {
+            Status_CategoryStack.Visibility = Visibility.Visible;
+            InventoryStack.Visibility = Visibility.Hidden;
+            MovomentLogStack.Visibility = Visibility.Hidden;
+        }
 
+        private void Close_BT_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Inventory_listView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Inventory_listView.ItemsSource=ConnectEntity.db.Invertarization.ToList();
+        }
+
+        private void MovomentLog_ListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            MovomentLog_ListView.ItemsSource=ConnectEntity.db.MovomentLog.ToList();
         }
     }
 }

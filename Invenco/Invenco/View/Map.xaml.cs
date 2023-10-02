@@ -56,6 +56,9 @@ namespace Invenco.View
             Loaded += Maps_Loaded;
             Invertarization invertarization2= new Invertarization();
             Invertarization1=invertarization2;
+            FullName_tb.Text = ConnectEntity.person_Data.FullName;
+            FullPatronymic.Text = ConnectEntity.person_Data.Patronymic;
+            PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(ConnectEntity.person_Data.Image, ConnectEntity.person_Data);
 
         }
 
@@ -254,7 +257,7 @@ namespace Invenco.View
         {
             try
             {
-                if (System.Windows.MessageBox.Show("Маркер и связанные с ним записи удалены.", "Уведомление",  MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (System.Windows.MessageBox.Show("Вы действительно хотите удалить запись.", "Уведомление",  MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     System.Windows.Controls.MenuItem menu = sender as System.Windows.Controls.MenuItem;
                     int MarkerID = (int)menu.Tag;
