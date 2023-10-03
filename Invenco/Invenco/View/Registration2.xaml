@@ -15,10 +15,11 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="1.4*"/>
         </Grid.ColumnDefinitions>
-      
 
-        <Border Background="CornflowerBlue" 
-                />
+
+        <MediaElement x:Name="MediaBackground" Source="MP4\MP4_Bacground.mp4" Width="Auto" Stretch="UniformToFill"  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                      LoadedBehavior="Manual"  MediaEnded="MediaBackground_MediaEnded">
+        </MediaElement>
 
         <Border Background="GhostWhite" Grid.Column="1" 
                 />

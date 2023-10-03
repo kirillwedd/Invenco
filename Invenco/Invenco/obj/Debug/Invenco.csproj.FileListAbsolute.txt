@@ -357,3 +357,5 @@ C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\AddMarker.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\AddMarker.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\HistoryInvertarization.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\HistoryInvertarization.baml
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\bin\Debug\MP4\MP4_Bacground.mp4
+C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -28,6 +28,5 @@ namespace Invenco.Entity
     
         public virtual Markers Markers { get; set; }
         public virtual MovomentLog MovomentLog { get; set; }
-        public virtual MovomentLog MovomentLog1 { get; set; }
     }
 }

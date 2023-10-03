@@ -6,8 +6,12 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Invenco.View"
-        mc:Ignorable="d"
+        xmlns:WrittenBool="clr-namespace:Invenco.ClassEntity"
+        mc:Ignorable="d"     
         Title="Inventarization" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.Resources>
+        <WrittenBool:StatusStringBool x:Key="StatusConverter" />
+    </Window.Resources>
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -190,10 +194,10 @@
 
                             <StackPanel Orientation="Vertical" >
                                 <TextBlock  Text="{Binding StringFormat=Категория {0}, Path=Category}" Width="Auto"/>
-                                <TextBlock  Text="{Binding StringFormat=Начало инвентаризации {0}, Path=StartDate}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Начало инвентаризации \{0:dd.MM.yy \},  Path=StartDate}" Width="Auto"/>
                                 <TextBlock  Text="{Binding StringFormat=Кабинет {0}, Path=cabinet}" Width="Auto"/>
-                                <TextBlock  Text="{Binding StringFormat=Конец инвентаризации {0}, Path=EndDate}" Width="Auto"/>
-                                <TextBlock  Text="{Binding StringFormat=Списан {0}, Path=WrittenOff}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Конец инвентаризации \{0:dd.MM.yy \},  Path=EndDate}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Списание {0}, Converter={StaticResource StatusConverter}, Path=WrittenOff}" Width="Auto"/>
                                 <TextBlock  Text="{Binding StringFormat=Статус {0}, Path=StatusName}" Width="Auto"/>
                             </StackPanel>
                         </StackPanel>
@@ -218,7 +222,7 @@
                             <StackPanel Orientation="Vertical" >
                                 <TextBlock  Text="{Binding StringFormat=Откуда {0}, Path=Where_from}" Width="Auto"/>
                                 <TextBlock  Text="{Binding StringFormat=Куда {0}, Path=Where_to}" Width="Auto"/>
-                                <TextBlock  Text="{Binding StringFormat=Дата перемещения {0}, Path=DateMov}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Дата перемещения \{0:dd.MM.yy \},  Path=DateMov}" Width="Auto"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

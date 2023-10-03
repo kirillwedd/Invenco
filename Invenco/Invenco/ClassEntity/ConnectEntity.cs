@@ -24,6 +24,8 @@ namespace Invenco.ClassEntity
 
         public static Person_data person_Data { get; set; }
 
+        public static Inventory_History Inventory_History { get; set; }
+
         public static Invertarization invertarization { get; set; }
         
 

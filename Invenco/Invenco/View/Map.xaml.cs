@@ -286,6 +286,12 @@ namespace Invenco.View
                         connection.Close();
                     }
                     System.Windows.MessageBox.Show("Маркер и связанные с ним записи удалены.", "Удаление");
+
+                    ConnectEntity.db.Inventory_History.Add(new Inventory_History()
+                    {
+                        History_InventoryID=
+
+                    });
                     LoadMarkers();
                    
                 }

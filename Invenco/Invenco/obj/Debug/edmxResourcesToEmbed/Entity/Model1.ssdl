@@ -7,6 +7,41 @@
     <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CategoryName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="HistoryMarker">
+    <Key>
+      <PropertyRef Name="HistoryMarkerID" />
+    </Key>
+    <Property Name="HistoryMarkerID" Type="int" Nullable="false" />
+    <Property Name="History_Latitude" Type="float" Nullable="false" />
+    <Property Name="History_Longitude" Type="float" Nullable="false" />
+    <Property Name="History_Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="HistoryMovomentLog">
+    <Key>
+      <PropertyRef Name="HistoryMovomentLogID" />
+    </Key>
+    <Property Name="HistoryMovomentLogID" Type="int" Nullable="false" />
+    <Property Name="History_InvertID" Type="int" Nullable="false" />
+    <Property Name="History_Where_from" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="History_Where_to" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="History_Date_Mov" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventory_History">
+    <Key>
+      <PropertyRef Name="History_InventoryID" />
+      <PropertyRef Name="HistoryMarkerID" />
+    </Key>
+    <Property Name="History_InventoryID" Type="int" Nullable="false" />
+    <Property Name="HistoryMarkerID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="cabinet" Type="nvarchar(max)" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image_invertarization" Type="image" />
+    <Property Name="HistoryMovomentLogID" Type="int" />
+  </EntityType>
   <EntityType Name="InventoryStatus">
     <Key>
       <PropertyRef Name="IdStatusWritten" />
@@ -72,6 +107,30 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <Association Name="FK_Inventory_History_HistoryMarker">
+    <End Role="HistoryMarker" Type="Self.HistoryMarker" Multiplicity="1" />
+    <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HistoryMarker">
+        <PropertyRef Name="HistoryMarkerID" />
+      </Principal>
+      <Dependent Role="Inventory_History">
+        <PropertyRef Name="HistoryMarkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_History_HistoryMovomentLog">
+    <End Role="HistoryMovomentLog" Type="Self.HistoryMovomentLog" Multiplicity="0..1" />
+    <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HistoryMovomentLog">
+        <PropertyRef Name="HistoryMovomentLogID" />
+      </Principal>
+      <Dependent Role="Inventory_History">
+        <PropertyRef Name="HistoryMovomentLogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Invertarization_Markers1">
     <End Role="Markers" Type="Self.Markers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -100,12 +159,23 @@
   </Association>
   <EntityContainer Name="Хранилище PETBASEModelContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistoryMarker" EntityType="Self.HistoryMarker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistoryMovomentLog" EntityType="Self.HistoryMovomentLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventory_History" EntityType="Self.Inventory_History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryStatus" EntityType="Self.InventoryStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Invertarization" EntityType="Self.Invertarization" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Markers" EntityType="Self.Markers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MovomentLog" EntityType="Self.MovomentLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person_data" EntityType="Self.Person_data" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Inventory_History_HistoryMarker" Association="Self.FK_Inventory_History_HistoryMarker">
+      <End Role="HistoryMarker" EntitySet="HistoryMarker" />
+      <End Role="Inventory_History" EntitySet="Inventory_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_History_HistoryMovomentLog" Association="Self.FK_Inventory_History_HistoryMovomentLog">
+      <End Role="HistoryMovomentLog" EntitySet="HistoryMovomentLog" />
+      <End Role="Inventory_History" EntitySet="Inventory_History" />
+    </AssociationSet>
     <AssociationSet Name="FK_Invertarization_Markers1" Association="Self.FK_Invertarization_Markers1">
       <End Role="Markers" EntitySet="Markers" />
       <End Role="Invertarization" EntitySet="Invertarization" />

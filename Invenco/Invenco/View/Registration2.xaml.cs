@@ -26,6 +26,13 @@ namespace Invenco.View
         public Registration2()
         {
             InitializeComponent();
+           
+            MediaBackground.Play(); 
+            MediaBackground.MediaEnded += MediaBackground_MediaEnded;
+         
+            
+            
+           
         }
 
         private void PackIconMaterial_MouseDown(object sender, MouseButtonEventArgs e)
@@ -101,6 +108,13 @@ namespace Invenco.View
             new Avtorization().Show();
             Hide();
         }
+
        
+
+        private void MediaBackground_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            MediaBackground.Position = TimeSpan.Zero;
+            MediaBackground.Play();
+        }
     }
 }

@@ -4,8 +4,47 @@
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
-    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HistoryMarker">
+    <Key>
+      <PropertyRef Name="HistoryMarkerID" />
+    </Key>
+    <Property Name="HistoryMarkerID" Type="Int32" Nullable="false" />
+    <Property Name="History_Latitude" Type="Double" Nullable="false" />
+    <Property Name="History_Longitude" Type="Double" Nullable="false" />
+    <Property Name="History_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Inventory_History" Relationship="Self.FK_Inventory_History_HistoryMarker" FromRole="HistoryMarker" ToRole="Inventory_History" />
+  </EntityType>
+  <EntityType Name="HistoryMovomentLog">
+    <Key>
+      <PropertyRef Name="HistoryMovomentLogID" />
+    </Key>
+    <Property Name="HistoryMovomentLogID" Type="Int32" Nullable="false" />
+    <Property Name="History_InvertID" Type="Int32" Nullable="false" />
+    <Property Name="History_Where_from" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="History_Where_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="History_Date_Mov" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Inventory_History" Relationship="Self.FK_Inventory_History_HistoryMovomentLog" FromRole="HistoryMovomentLog" ToRole="Inventory_History" />
+  </EntityType>
+  <EntityType Name="Inventory_History">
+    <Key>
+      <PropertyRef Name="History_InventoryID" />
+      <PropertyRef Name="HistoryMarkerID" />
+    </Key>
+    <Property Name="History_InventoryID" Type="Int32" Nullable="false" />
+    <Property Name="HistoryMarkerID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image_invertarization" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="HistoryMovomentLogID" Type="Int32" />
+    <NavigationProperty Name="HistoryMarker" Relationship="Self.FK_Inventory_History_HistoryMarker" FromRole="Inventory_History" ToRole="HistoryMarker" />
+    <NavigationProperty Name="HistoryMovomentLog" Relationship="Self.FK_Inventory_History_HistoryMovomentLog" FromRole="Inventory_History" ToRole="HistoryMovomentLog" />
   </EntityType>
   <EntityType Name="InventoryStatus">
     <Key>
@@ -28,11 +67,10 @@
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="WrittenOff" Type="Boolean" />
     <Property Name="StatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdMovomentLog" Type="Int32" />
+    <Property Name="Image_Invertarization" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Markers" Relationship="Self.FK_Invertarization_Markers1" FromRole="Invertarization" ToRole="Markers" />
     <NavigationProperty Name="MovomentLog" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="Invertarization" ToRole="MovomentLog" />
-    <Property Name="IdMovomentLog" Type="Int32" />
-    <NavigationProperty Name="MovomentLog1" Relationship="PETBASEModel.FK_Invertarization_MovomentLog1" FromRole="Invertarization" ToRole="MovomentLog" />
-    <Property Name="Image_Invertarization" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Markers">
     <Key>
@@ -49,12 +87,11 @@
       <PropertyRef Name="IdMovomentLog" />
     </Key>
     <Property Name="IdMovomentLog" Type="Int32" Nullable="false" />
+    <Property Name="InvertNumber" Type="Int32" Nullable="false" />
     <Property Name="Where_from" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Where_to" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DateMov" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="InvertNumber" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Invertarization" Relationship="Self.FK_Invertarization_MovomentLog" FromRole="MovomentLog" ToRole="Invertarization" />
-    <NavigationProperty Name="Invertarization1" Relationship="PETBASEModel.FK_Invertarization_MovomentLog1" FromRole="MovomentLog" ToRole="Invertarization" />
   </EntityType>
   <EntityType Name="Person_data">
     <Key>
@@ -78,8 +115,34 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <Association Name="FK_Inventory_History_HistoryMarker">
+    <End Role="HistoryMarker" Type="Self.HistoryMarker" Multiplicity="1" />
+    <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HistoryMarker">
+        <PropertyRef Name="HistoryMarkerID" />
+      </Principal>
+      <Dependent Role="Inventory_History">
+        <PropertyRef Name="HistoryMarkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_History_HistoryMovomentLog">
+    <End Role="HistoryMovomentLog" Type="Self.HistoryMovomentLog" Multiplicity="0..1" />
+    <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HistoryMovomentLog">
+        <PropertyRef Name="HistoryMovomentLogID" />
+      </Principal>
+      <Dependent Role="Inventory_History">
+        <PropertyRef Name="HistoryMovomentLogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Invertarization_Markers1">
-    <End Role="Markers" Type="Self.Markers" Multiplicity="1" />
+    <End Role="Markers" Type="Self.Markers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Markers">
@@ -91,25 +154,36 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Invertarization_MovomentLog">
-    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="1" />
+    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="0..1" />
     <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MovomentLog">
         <PropertyRef Name="IdMovomentLog" />
       </Principal>
       <Dependent Role="Invertarization">
-        <PropertyRef Name="InvertNumber" />
+        <PropertyRef Name="IdMovomentLog" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="PETBASEEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="HistoryMarker" EntityType="Self.HistoryMarker" />
+    <EntitySet Name="HistoryMovomentLog" EntityType="Self.HistoryMovomentLog" />
+    <EntitySet Name="Inventory_History" EntityType="Self.Inventory_History" />
     <EntitySet Name="InventoryStatus" EntityType="Self.InventoryStatus" />
     <EntitySet Name="Invertarization" EntityType="Self.Invertarization" />
     <EntitySet Name="Markers" EntityType="Self.Markers" />
     <EntitySet Name="MovomentLog" EntityType="Self.MovomentLog" />
     <EntitySet Name="Person_data" EntityType="Self.Person_data" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Inventory_History_HistoryMarker" Association="Self.FK_Inventory_History_HistoryMarker">
+      <End Role="HistoryMarker" EntitySet="HistoryMarker" />
+      <End Role="Inventory_History" EntitySet="Inventory_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_History_HistoryMovomentLog" Association="Self.FK_Inventory_History_HistoryMovomentLog">
+      <End Role="HistoryMovomentLog" EntitySet="HistoryMovomentLog" />
+      <End Role="Inventory_History" EntitySet="Inventory_History" />
+    </AssociationSet>
     <AssociationSet Name="FK_Invertarization_Markers1" Association="Self.FK_Invertarization_Markers1">
       <End Role="Markers" EntitySet="Markers" />
       <End Role="Invertarization" EntitySet="Invertarization" />
@@ -118,21 +192,5 @@
       <End Role="MovomentLog" EntitySet="MovomentLog" />
       <End Role="Invertarization" EntitySet="Invertarization" />
     </AssociationSet>
-    <AssociationSet Name="FK_Invertarization_MovomentLog1" Association="PETBASEModel.FK_Invertarization_MovomentLog1">
-      <End Role="MovomentLog" EntitySet="MovomentLog" />
-      <End Role="Invertarization" EntitySet="Invertarization" />
-    </AssociationSet>
   </EntityContainer>
-  <Association Name="FK_Invertarization_MovomentLog1">
-    <End Type="PETBASEModel.MovomentLog" Role="MovomentLog" Multiplicity="0..1" />
-    <End Type="PETBASEModel.Invertarization" Role="Invertarization" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MovomentLog">
-        <PropertyRef Name="IdMovomentLog" />
-      </Principal>
-      <Dependent Role="Invertarization">
-        <PropertyRef Name="IdMovomentLog" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

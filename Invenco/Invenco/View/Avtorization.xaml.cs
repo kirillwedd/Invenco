@@ -25,6 +25,8 @@ namespace Invenco.View
         public Avtorization()
         {
             InitializeComponent();
+            MediaBackground.Play();
+            MediaBackground.MediaEnded += MediaBackground_MediaEnded;
         }
 
         private void AddUserImage_MouseDown(object sender, MouseButtonEventArgs e)
@@ -68,6 +70,12 @@ namespace Invenco.View
         private void ClosesBt_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void MediaBackground_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            MediaBackground.Position = TimeSpan.Zero;
+            MediaBackground.Play();
         }
     }
 }

@@ -9,6 +9,43 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HistoryMarker">
+      <EntityTypeMapping TypeName="PETBASEModel.HistoryMarker">
+        <MappingFragment StoreEntitySet="HistoryMarker">
+          <ScalarProperty Name="HistoryMarkerID" ColumnName="HistoryMarkerID" />
+          <ScalarProperty Name="History_Latitude" ColumnName="History_Latitude" />
+          <ScalarProperty Name="History_Longitude" ColumnName="History_Longitude" />
+          <ScalarProperty Name="History_Name" ColumnName="History_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistoryMovomentLog">
+      <EntityTypeMapping TypeName="PETBASEModel.HistoryMovomentLog">
+        <MappingFragment StoreEntitySet="HistoryMovomentLog">
+          <ScalarProperty Name="HistoryMovomentLogID" ColumnName="HistoryMovomentLogID" />
+          <ScalarProperty Name="History_InvertID" ColumnName="History_InvertID" />
+          <ScalarProperty Name="History_Where_from" ColumnName="History_Where_from" />
+          <ScalarProperty Name="History_Where_to" ColumnName="History_Where_to" />
+          <ScalarProperty Name="History_Date_Mov" ColumnName="History_Date_Mov" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventory_History">
+      <EntityTypeMapping TypeName="PETBASEModel.Inventory_History">
+        <MappingFragment StoreEntitySet="Inventory_History">
+          <ScalarProperty Name="History_InventoryID" ColumnName="History_InventoryID" />
+          <ScalarProperty Name="HistoryMarkerID" ColumnName="HistoryMarkerID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="cabinet" ColumnName="cabinet" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="Image_invertarization" ColumnName="Image_invertarization" />
+          <ScalarProperty Name="HistoryMovomentLogID" ColumnName="HistoryMovomentLogID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="InventoryStatus">
       <EntityTypeMapping TypeName="PETBASEModel.InventoryStatus">
         <MappingFragment StoreEntitySet="InventoryStatus">
@@ -20,8 +57,6 @@
     <EntitySetMapping Name="Invertarization">
       <EntityTypeMapping TypeName="PETBASEModel.Invertarization">
         <MappingFragment StoreEntitySet="Invertarization">
-          <ScalarProperty Name="Image_Invertarization" ColumnName="Image_Invertarization" />
-          <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
           <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
           <ScalarProperty Name="MarkersID" ColumnName="MarkersID" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -31,6 +66,8 @@
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="WrittenOff" ColumnName="WrittenOff" />
           <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
+          <ScalarProperty Name="Image_Invertarization" ColumnName="Image_Invertarization" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -48,23 +85,23 @@
       <EntityTypeMapping TypeName="PETBASEModel.MovomentLog">
         <MappingFragment StoreEntitySet="MovomentLog">
           <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
+          <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
           <ScalarProperty Name="Where_from" ColumnName="Where_from" />
           <ScalarProperty Name="Where_to" ColumnName="Where_to" />
           <ScalarProperty Name="DateMov" ColumnName="DateMov" />
-          <ScalarProperty Name="InvertNumber" ColumnName="InvertNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Person_data">
       <EntityTypeMapping TypeName="PETBASEModel.Person_data">
         <MappingFragment StoreEntitySet="Person_data">
-          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="PersonID" ColumnName="PersonID" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

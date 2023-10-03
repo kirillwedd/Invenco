@@ -254,8 +254,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClassAvtrorization\AvtrorizationCS.cs" />
+    <Compile Include="ClassEntity\AddHistory.cs" />
     <Compile Include="ClassEntity\ConnectEntity.cs" />
     <Compile Include="ClassEntity\Message_Person_data_profile.cs" />
+    <Compile Include="ClassEntity\StatusStringBool.cs" />
     <Compile Include="ClassImage\AddImage.cs" />
     <Compile Include="ClassImage\DeleteImage.cs" />
     <Compile Include="ClassImage\LoadImage.cs" />
@@ -272,7 +274,16 @@
     <Compile Include="Entity\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\HistoryMarker.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\HistoryMovomentLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\InventoryStatus.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Inventory_History.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Invertarization.cs">
@@ -441,20 +452,26 @@
   <ItemGroup>
     <Content Include="Entity\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Entity\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="MP4\SpaceMP.mp4" />
+    <None Include="MP4\MP4_Bacground.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Resource Include="MP4\Spece.gif" />
     <Resource Include="Image\AddToList.png" />
     <Resource Include="Image\StubImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

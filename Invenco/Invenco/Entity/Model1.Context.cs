@@ -26,6 +26,9 @@ namespace Invenco.Entity
         }
     
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<HistoryMarker> HistoryMarker { get; set; }
+        public virtual DbSet<HistoryMovomentLog> HistoryMovomentLog { get; set; }
+        public virtual DbSet<Inventory_History> Inventory_History { get; set; }
         public virtual DbSet<InventoryStatus> InventoryStatus { get; set; }
         public virtual DbSet<Invertarization> Invertarization { get; set; }
         public virtual DbSet<Markers> Markers { get; set; }
