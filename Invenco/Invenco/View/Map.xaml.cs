@@ -35,6 +35,7 @@ using System.IO;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace Invenco.View
@@ -281,17 +282,47 @@ namespace Invenco.View
                         {
                             command.Parameters.AddWithValue("@MarkersID", MarkerID);
                             command.ExecuteNonQuery();
+                           
                         }
 
-                        connection.Close();
+                        var HistoryMarker = ConnectEntity.db.Markers.FirstOrDefault(m=>m.MarkerID==MarkerID);
+
+                        
+                        string InsertHistoryMarker = "INSERT INTO HistoryMarker (HistoryMarkerID, History_Latitude, History_Longitude, History_Name) VALUES (@HistoryMarkerID, @HistoryLatitude, @History_Longitude, @History_Name)";
+                       
+                        using(SqlCommand InsertCommand= new SqlCommand(InsertHistoryMarker, connection))
+                        {
+                            InsertCommand.Parameters.AddWithValue("@HistoryMarkerID", HistoryMarker.MarkerID);
+                            InsertCommand.Parameters.AddWithValue("@HistoryLatitude", HistoryMarker.Latitude);
+                            InsertCommand.Parameters.AddWithValue("@History_Longitude", HistoryMarker.Longitude);
+                            InsertCommand.Parameters.AddWithValue("@History_Name", HistoryMarker.Name);
+                            InsertCommand.ExecuteNonQuery ();
+
+                        }
+
+                        var historyInvertory = ConnectEntity.db.Invertarization.FirstOrDefault(IN=>IN.MarkersID==MarkerID);
+
+                        string InsertHistoryInvertarization = "INSERT INTO Inventory_History (History_InvertoryID, HistoryMarkerID, Name, Category, StartDate, cabinet, EndDate, StatusName, Image_invertarization, HistoryMovomentLogID) VALUES (@History_InvertoryID, @HistoryMarkerID, @Name, @Category, @StartDate, @cabinet, @EndDate, @StatusName, @Image_invertarization, @HistoryMovomentLogID) ";
+
+                        using(SqlCommand InsertInvertory = new SqlCommand(InsertHistoryInvertarization, connection))
+                        {
+                            InsertInvertory.Parameters.AddWithValue("@History_InvertoryID", historyInvertory.InvertNumber);      , @StatusName, @Image_invertarization, @HistoryMovomentLogID
+                            InsertInvertory.Parameters.AddWithValue("@HistoryMarkerID", historyInvertory.MarkersID);
+                            InsertInvertory.Parameters.AddWithValue("@Name", historyInvertory.name);
+                            InsertInvertory.Parameters.AddWithValue("@Category", historyInvertory.Category);
+                            InsertInvertory.Parameters.AddWithValue("@StartDate", historyInvertory.StartDate);
+                            InsertInvertory.Parameters.AddWithValue("@cabinet", historyInvertory.cabinet);
+                            InsertInvertory.Parameters.AddWithValue("@EndDate", historyInvertory.EndDate);
+
+
+                        }
+
+                            connection.Close();
                     }
                     System.Windows.MessageBox.Show("Маркер и связанные с ним записи удалены.", "Удаление");
 
-                    ConnectEntity.db.Inventory_History.Add(new Inventory_History()
-                    {
-                        History_InventoryID=
+                   
 
-                    });
                     LoadMarkers();
                    
                 }
