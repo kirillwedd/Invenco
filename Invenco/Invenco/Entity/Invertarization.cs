@@ -14,6 +14,12 @@ namespace Invenco.Entity
     
     public partial class Invertarization
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Invertarization()
+        {
+            this.MovomentLog = new HashSet<MovomentLog>();
+        }
+    
         public int InvertNumber { get; set; }
         public int MarkersID { get; set; }
         public string name { get; set; }
@@ -23,10 +29,10 @@ namespace Invenco.Entity
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> WrittenOff { get; set; }
         public string StatusName { get; set; }
-        public Nullable<int> IdMovomentLog { get; set; }
         public byte[] Image_Invertarization { get; set; }
     
         public virtual Markers Markers { get; set; }
-        public virtual MovomentLog MovomentLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovomentLog> MovomentLog { get; set; }
     }
 }

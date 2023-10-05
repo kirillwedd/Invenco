@@ -42,7 +42,6 @@
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="StatusName" ColumnName="StatusName" />
           <ScalarProperty Name="Image_invertarization" ColumnName="Image_invertarization" />
-          <ScalarProperty Name="HistoryMovomentLogID" ColumnName="HistoryMovomentLogID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -66,7 +65,6 @@
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="WrittenOff" ColumnName="WrittenOff" />
           <ScalarProperty Name="StatusName" ColumnName="StatusName" />
-          <ScalarProperty Name="IdMovomentLog" ColumnName="IdMovomentLog" />
           <ScalarProperty Name="Image_Invertarization" ColumnName="Image_Invertarization" />
         </MappingFragment>
       </EntityTypeMapping>

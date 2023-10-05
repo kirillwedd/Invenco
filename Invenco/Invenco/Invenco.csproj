@@ -255,7 +255,6 @@
     </Compile>
     <Compile Include="ClassAvtrorization\AvtrorizationCS.cs" />
     <Compile Include="ClassEntity\ConnectEntity.cs" />
-    <Compile Include="ClassEntity\EntityViewModel.cs" />
     <Compile Include="ClassEntity\Message_Person_data_profile.cs" />
     <Compile Include="ClassEntity\StatusStringBool.cs" />
     <Compile Include="ClassImage\AddImage.cs" />

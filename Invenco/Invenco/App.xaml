@@ -4,7 +4,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Invenco"
-             StartupUri="/View\Registration2.xaml">
+             StartupUri="/View\Map.xaml">
     <Application.Resources>
        <ResourceDictionary>
 

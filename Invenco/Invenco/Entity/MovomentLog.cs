@@ -14,19 +14,12 @@ namespace Invenco.Entity
     
     public partial class MovomentLog
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MovomentLog()
-        {
-            this.Invertarization = new HashSet<Invertarization>();
-        }
-    
         public int IdMovomentLog { get; set; }
         public int InvertNumber { get; set; }
         public string Where_from { get; set; }
         public string Where_to { get; set; }
         public System.DateTime DateMov { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invertarization> Invertarization { get; set; }
+        public virtual Invertarization Invertarization { get; set; }
     }
 }

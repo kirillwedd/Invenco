@@ -14,6 +14,12 @@ namespace Invenco.Entity
     
     public partial class Inventory_History
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Inventory_History()
+        {
+            this.HistoryMovomentLog = new HashSet<HistoryMovomentLog>();
+        }
+    
         public int History_InventoryID { get; set; }
         public int HistoryMarkerID { get; set; }
         public string Name { get; set; }
@@ -23,9 +29,9 @@ namespace Invenco.Entity
         public System.DateTime EndDate { get; set; }
         public string StatusName { get; set; }
         public byte[] Image_invertarization { get; set; }
-        public Nullable<int> HistoryMovomentLogID { get; set; }
     
         public virtual HistoryMarker HistoryMarker { get; set; }
-        public virtual HistoryMovomentLog HistoryMovomentLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryMovomentLog> HistoryMovomentLog { get; set; }
     }
 }

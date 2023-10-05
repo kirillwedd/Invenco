@@ -14,19 +14,12 @@ namespace Invenco.Entity
     
     public partial class HistoryMovomentLog
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HistoryMovomentLog()
-        {
-            this.Inventory_History = new HashSet<Inventory_History>();
-        }
-    
         public int HistoryMovomentLogID { get; set; }
         public int History_InvertID { get; set; }
         public string History_Where_from { get; set; }
         public string History_Where_to { get; set; }
         public System.DateTime History_Date_Mov { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory_History> Inventory_History { get; set; }
+        public virtual Inventory_History Inventory_History { get; set; }
     }
 }

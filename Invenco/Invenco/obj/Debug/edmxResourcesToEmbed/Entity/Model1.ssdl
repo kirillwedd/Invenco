@@ -29,7 +29,6 @@
   <EntityType Name="Inventory_History">
     <Key>
       <PropertyRef Name="History_InventoryID" />
-      <PropertyRef Name="HistoryMarkerID" />
     </Key>
     <Property Name="History_InventoryID" Type="int" Nullable="false" />
     <Property Name="HistoryMarkerID" Type="int" Nullable="false" />
@@ -40,7 +39,6 @@
     <Property Name="EndDate" Type="date" Nullable="false" />
     <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Image_invertarization" Type="image" />
-    <Property Name="HistoryMovomentLogID" Type="int" />
   </EntityType>
   <EntityType Name="InventoryStatus">
     <Key>
@@ -52,7 +50,6 @@
   <EntityType Name="Invertarization">
     <Key>
       <PropertyRef Name="InvertNumber" />
-      <PropertyRef Name="MarkersID" />
     </Key>
     <Property Name="InvertNumber" Type="int" Nullable="false" />
     <Property Name="MarkersID" Type="int" Nullable="false" />
@@ -63,7 +60,6 @@
     <Property Name="EndDate" Type="date" />
     <Property Name="WrittenOff" Type="bit" />
     <Property Name="StatusName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IdMovomentLog" Type="int" />
     <Property Name="Image_Invertarization" Type="image" />
   </EntityType>
   <EntityType Name="Markers">
@@ -107,6 +103,18 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <Association Name="FK_HistoryMovomentLog_Inventory_History">
+    <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="1" />
+    <End Role="HistoryMovomentLog" Type="Self.HistoryMovomentLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory_History">
+        <PropertyRef Name="History_InventoryID" />
+      </Principal>
+      <Dependent Role="HistoryMovomentLog">
+        <PropertyRef Name="History_InvertID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inventory_History_HistoryMarker">
     <End Role="HistoryMarker" Type="Self.HistoryMarker" Multiplicity="1" />
     <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="*" />
@@ -116,18 +124,6 @@
       </Principal>
       <Dependent Role="Inventory_History">
         <PropertyRef Name="HistoryMarkerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inventory_History_HistoryMovomentLog">
-    <End Role="HistoryMovomentLog" Type="Self.HistoryMovomentLog" Multiplicity="0..1" />
-    <End Role="Inventory_History" Type="Self.Inventory_History" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="HistoryMovomentLog">
-        <PropertyRef Name="HistoryMovomentLogID" />
-      </Principal>
-      <Dependent Role="Inventory_History">
-        <PropertyRef Name="HistoryMovomentLogID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -145,15 +141,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Invertarization_MovomentLog">
-    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="0..1" />
-    <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="*" />
+  <Association Name="FK_MovomentLog_Invertarization">
+    <End Role="Invertarization" Type="Self.Invertarization" Multiplicity="1" />
+    <End Role="MovomentLog" Type="Self.MovomentLog" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="MovomentLog">
-        <PropertyRef Name="IdMovomentLog" />
+      <Principal Role="Invertarization">
+        <PropertyRef Name="InvertNumber" />
       </Principal>
-      <Dependent Role="Invertarization">
-        <PropertyRef Name="IdMovomentLog" />
+      <Dependent Role="MovomentLog">
+        <PropertyRef Name="InvertNumber" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -168,21 +164,21 @@
     <EntitySet Name="MovomentLog" EntityType="Self.MovomentLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person_data" EntityType="Self.Person_data" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_HistoryMovomentLog_Inventory_History" Association="Self.FK_HistoryMovomentLog_Inventory_History">
+      <End Role="Inventory_History" EntitySet="Inventory_History" />
+      <End Role="HistoryMovomentLog" EntitySet="HistoryMovomentLog" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inventory_History_HistoryMarker" Association="Self.FK_Inventory_History_HistoryMarker">
       <End Role="HistoryMarker" EntitySet="HistoryMarker" />
-      <End Role="Inventory_History" EntitySet="Inventory_History" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventory_History_HistoryMovomentLog" Association="Self.FK_Inventory_History_HistoryMovomentLog">
-      <End Role="HistoryMovomentLog" EntitySet="HistoryMovomentLog" />
       <End Role="Inventory_History" EntitySet="Inventory_History" />
     </AssociationSet>
     <AssociationSet Name="FK_Invertarization_Markers1" Association="Self.FK_Invertarization_Markers1">
       <End Role="Markers" EntitySet="Markers" />
       <End Role="Invertarization" EntitySet="Invertarization" />
     </AssociationSet>
-    <AssociationSet Name="FK_Invertarization_MovomentLog" Association="Self.FK_Invertarization_MovomentLog">
-      <End Role="MovomentLog" EntitySet="MovomentLog" />
+    <AssociationSet Name="FK_MovomentLog_Invertarization" Association="Self.FK_MovomentLog_Invertarization">
       <End Role="Invertarization" EntitySet="Invertarization" />
+      <End Role="MovomentLog" EntitySet="MovomentLog" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

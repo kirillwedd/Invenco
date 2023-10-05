@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5fb374f426334a31b58b04185fd3b539" Name="Diagram1">
-        <EntityTypeShape EntityType="PETBASEModel.Category" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.HistoryMarker" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.HistoryMovomentLog" Width="1.5" PointX="5.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.Inventory_History" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.InventoryStatus" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+      <Diagram DiagramId="3e65889eca854ba8b4598458d48b529a" Name="Diagram1">
+        <EntityTypeShape EntityType="PETBASEModel.Category" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.HistoryMarker" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.HistoryMovomentLog" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.Inventory_History" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.InventoryStatus" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PETBASEModel.Invertarization" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.Markers" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.MovomentLog" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.Person_data" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PETBASEModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.Markers" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.MovomentLog" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.Person_data" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PETBASEModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="PETBASEModel.FK_Inventory_History_HistoryMarker" ManuallyRouted="false" />
-        <AssociationConnector Association="PETBASEModel.FK_Inventory_History_HistoryMovomentLog" ManuallyRouted="false" />
+        <AssociationConnector Association="PETBASEModel.FK_HistoryMovomentLog_Inventory_History" ManuallyRouted="false" />
         <AssociationConnector Association="PETBASEModel.FK_Invertarization_Markers1" ManuallyRouted="false" />
-        <AssociationConnector Association="PETBASEModel.FK_Invertarization_MovomentLog" ManuallyRouted="false" />
+        <AssociationConnector Association="PETBASEModel.FK_MovomentLog_Invertarization" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
