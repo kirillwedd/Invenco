@@ -91,10 +91,7 @@ namespace Invenco.Class
                 foreach (char sc in SpecChar)
                 {
                     if (sc == c)
-                        Checksc++;
-                    
-                    
-                   
+                        Checksc++;               
                 }
               
                 
@@ -176,9 +173,7 @@ namespace Invenco.Class
             if (regex.IsMatch(textBox.Text) == false)
             _sucess= false;
             return this;
-           
-         
-            
+                                
         }
 
         public Validator  EntityCheckLogin(System.Windows.Controls.TextBox textBox)
@@ -193,15 +188,13 @@ namespace Invenco.Class
             return this;
         }
 
-       
-
-
+    
         public  bool Validate()
         {
             if(_sucess==false)
             {
                 _control.ToolTip = "Это поле введено некоректно";
-                _control.Background = Brushes.Red;
+               
             }
             else
             {

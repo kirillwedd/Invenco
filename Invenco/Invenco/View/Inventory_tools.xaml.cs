@@ -36,11 +36,14 @@ namespace Invenco.View
             InitializeComponent();
 
             
+            
             PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(person_Data.Image, person_Data);
 
             ConnectEntity.PersonData(person_Data, FullName_tb, FullPatronymic, AddFullPersonDataBt);
 
             ConnectEntity.person_Data=person_Data;
+
+            
             
         }
 
@@ -109,7 +112,9 @@ namespace Invenco.View
         }
 
         private void HistoryLog_Click(object sender, RoutedEventArgs e)
-        {
+        { 
+            new HistoryInvertarization().Show();
+            Hide();
 
         }
     }

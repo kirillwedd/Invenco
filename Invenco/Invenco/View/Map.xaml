@@ -25,6 +25,8 @@
             </Grid.RowDefinitions>
         </Grid>
 
+    
+
         <gmaps:GMapControl Grid.Column="1" x:Name="Maps" Loaded="Maps_Loaded"  MouseDoubleClick="Maps_MouseDoubleClick" />
 
         <StackPanel Width="Auto" Height="Auto" VerticalAlignment="Top" ClipToBounds="True" 
@@ -56,7 +58,11 @@
 
 
                 </Border>
-               
+
+                <Button x:Name="Back_Left_chefron_BT" DockPanel.Dock="Top" Margin="5,-180,0,0"  Style="{StaticResource topButton}" Click="Back_Left_chefron_BT_Click">
+                    <Icon:PackIconMaterial Kind="ArrowCollapseLeft"/>
+                </Button>
+
                 <TextBlock x:Name="FullName_tb"  Text="" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                 DockPanel.Dock="Top" TextAlignment="Center" Margin=" 5 25 0 10"/>
                 

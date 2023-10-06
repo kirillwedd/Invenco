@@ -41,6 +41,7 @@ namespace Invenco.View
 
         private void HistoryInvertory_Btn_Click(object sender, RoutedEventArgs e)
         {
+            ListView_Invertarization.ItemsSource=ConnectEntity.db.Inventory_History.ToList();
             HistoryStack.Visibility = Visibility.Visible;
             HistoryMovomentLogStack.Visibility = Visibility.Hidden;
             Maps.Visibility = Visibility.Hidden;
@@ -48,6 +49,7 @@ namespace Invenco.View
 
         private void HistoryMovomentLog_Click(object sender, RoutedEventArgs e)
         {
+            ListView_Invertarization.ItemsSource = ConnectEntity.db.HistoryMovomentLog.ToList();
             HistoryMovomentLogStack.Visibility = Visibility.Visible;
             HistoryStack.Visibility = Visibility.Hidden;
             Maps.Visibility = Visibility.Hidden;
@@ -58,6 +60,7 @@ namespace Invenco.View
             Maps.Visibility = Visibility.Visible;
             HistoryStack.Visibility = Visibility.Hidden;
             HistoryMovomentLogStack.Visibility = Visibility.Hidden;
+
         }
 
         private void ClearMarkers()

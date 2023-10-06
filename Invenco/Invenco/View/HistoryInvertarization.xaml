@@ -124,16 +124,16 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Path=Inventory_History.Name}" Width="45"/>
-                                <Image Source="{Binding Path=Inventory_History.Image_invertarization}"/>
+                                <TextBlock Text="{Binding StringFormat=Название {0} , Path=name}" Width="Auto" Margin="0,0,10,0" />
+                                <Image Source="{Binding Path=Image_invertarization}" Width="100" Height="100" ToolTip="Картинка" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" >
-                                <TextBlock  Text="{Binding Path=Inventory_History.Category}" Width="Auto"/>
-                                <TextBlock  Text="{Binding Path=Inventory_History.StartDate}" Width="Auto"/>
-                                <TextBlock  Text="{Binding Path=Inventory_History.cabinet}" Width="Auto"/>
-                                <TextBlock  Text="{Binding Path=Inventory_History.EndDate}" Width="Auto"/>
-                                <TextBlock  Text="{Binding Path=Inventory_History.StatusName}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Категория {0}, Path=Category}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Начало инвентаризации \{0:dd.MM.yy \},  Path=StartDate}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Кабинет {0}, Path=cabinet}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Конец инвентаризации \{0:dd.MM.yy \},  Path=EndDate}" Width="Auto"/>
+                                <TextBlock  Text="{Binding StringFormat=Статус {0}, Path=StatusName}" Width="Auto"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
@@ -145,13 +145,13 @@
 
         <!--Журнал перемещений-->
         <StackPanel x:Name="HistoryMovomentLogStack" Grid.Column="1" Grid.Row="1" Margin="0,45,0,0" Visibility="Hidden" >
-            <ListView >
+            <ListView x:Name="ListMovomentLog">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding Path=Invertarization.name}" Width="45"/>
-                                <Image Source="{Binding Path=Image_Invertarization}"/>
+                                <Image Source="{Binding Path=Image_invertarization}"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" >

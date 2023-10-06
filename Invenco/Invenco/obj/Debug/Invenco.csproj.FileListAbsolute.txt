@@ -176,10 +176,8 @@ C:\Users\1\Desktop\Pet Project\Invenco\Invenco\bin\Debug\Microsoft.Web.WebView2.
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.csproj.AssemblyReference.cache
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Avtorization.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Inventory_tools.g.cs
-C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Main.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Map.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\PictureEditor.g.cs
-C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Registration.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Registration2.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\App.g.cs
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco_Content.g.cs
@@ -338,10 +336,8 @@ C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\bin\Debug\System.ValueTuple.xml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\App.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Avtorization.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Inventory_tools.baml
-C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Main.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Map.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\PictureEditor.baml
-C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Registration.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\View\Registration2.baml
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.g.resources
 C:\Users\1\Desktop\Pet_Project\Invenco\Invenco\obj\Debug\Invenco.Properties.Resources.resources

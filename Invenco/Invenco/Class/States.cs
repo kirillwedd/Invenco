@@ -7,10 +7,14 @@ using System.Windows;
 
 namespace Invenco.Class
 {
-    static class States
+    static class States 
     {
+
+        public static WindowState State { get; set; }
         
-      public static  Window WindowSt { get; set; }
+        
+        
+        
         
        
     }

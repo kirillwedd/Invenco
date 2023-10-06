@@ -331,9 +331,6 @@
     <Compile Include="View\Inventory_tools.xaml.cs">
       <DependentUpon>Inventory_tools.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
@@ -342,9 +339,6 @@
     </Compile>
     <Compile Include="View\PictureEditor.xaml.cs">
       <DependentUpon>PictureEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Registration.xaml.cs">
-      <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Registration2.xaml.cs">
       <DependentUpon>Registration2.xaml</DependentUpon>
@@ -417,10 +411,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Main.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Map.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -430,10 +420,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PictureEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -459,11 +445,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="MP4\SpaceMP.mp4" />
     <None Include="MP4\MP4_Bacground.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Resource Include="MP4\Spece.gif" />
     <Resource Include="Image\AddToList.png" />
     <Resource Include="Image\StubImage.png" />
   </ItemGroup>

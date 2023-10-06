@@ -42,7 +42,7 @@
                         Width="120" Height="120" VerticalAlignment="Top" >
 
 
-                    
+
                     <Ellipse x:Name="EllipcePhoto" MouseDown="EllipcePhoto_MouseDown" >
                         <Ellipse.Fill>
                             <ImageBrush x:Name="PhotoEllipse" ImageSource="{Icon:MaterialDesignImage Kind=PhotoCamera, Brush=Gray}"/>
@@ -56,9 +56,6 @@
 
                     </Ellipse>
 
-                    
-
-               
                 </Border>
 
 
@@ -98,7 +95,12 @@
                         </StackPanel>
                     </Button>
 
-
+                    <Button x:Name="HistoryLog" Style="{StaticResource menuButton}" Click="HistoryLog_Click"  >
+                        <StackPanel x:Name="HistoryLogStack" Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Списанное" Foreground="White" FontWeight="Bold" FontSize="15" />
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="MapBt" Style="{StaticResource menuButton}" Click="Map_Btn_Click"  >
                         <StackPanel x:Name="MapStack" Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="MapMarker"  Style="{StaticResource menuButtonIcon}" />
@@ -106,16 +108,9 @@
 
                         </StackPanel>
                     </Button>
-
-                    <Button x:Name="HistoryLog" Style="{StaticResource menuButton}" Click="HistoryLog_Click"  >
-                        <StackPanel x:Name="HistoryLogStack" Orientation="Horizontal">
-                            <Icon:PackIconMaterial Kind="Table"  Style="{StaticResource menuButtonIcon}" />
-                            <TextBlock Text="Списанное" Foreground="White" FontWeight="Bold" FontSize="15" />
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
-                
-                
+
+
 
                 <StackPanel VerticalAlignment="Bottom">
                     <Button x:Name="Invertarization_Btns1" Style="{StaticResource menuButton}" Click="Invertarization_Btn_Click"  >
@@ -128,14 +123,14 @@
 
                 </StackPanel>
 
-              
+
 
 
 
             </DockPanel>
 
         </Border>
-       
+
 
 
 

@@ -189,7 +189,7 @@
                         <StackPanel Orientation="Horizontal" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding StringFormat=Название {0} , Path=name}" Width="Auto" Margin="0,0,10,0" />
-                                <Image Source="{Binding Path=Image_Invertarization}" Width="100" Height="100" ToolTip="Картинка"/>
+                                <Image Source="{Binding Path=Image_Invertarization}" Width="100" Height="100" ToolTip="Картинка" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical" >

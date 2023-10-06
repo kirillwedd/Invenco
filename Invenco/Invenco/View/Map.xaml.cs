@@ -45,21 +45,15 @@ namespace Invenco.View
     /// </summary>
     public partial class Map : Window
     {
-
-        private Invertarization Invertarization1 { get; set; }
-
-      
        
         public Map()
         {
             InitializeComponent();
             
             Loaded += Maps_Loaded;
-            //Invertarization invertarization2= new Invertarization();
-            //Invertarization1=invertarization2;
-            //FullName_tb.Text = ConnectEntity.person_Data.FullName;
-            //FullPatronymic.Text = ConnectEntity.person_Data.Patronymic;
-            //PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(ConnectEntity.person_Data.Image, ConnectEntity.person_Data);
+            FullName_tb.Text = ConnectEntity.person_Data.FullName;
+            FullPatronymic.Text = ConnectEntity.person_Data.Patronymic;
+            PhotoEllipse.ImageSource = AddImage.ByteToArrayToImage(ConnectEntity.person_Data.Image, ConnectEntity.person_Data);
 
         }
 
@@ -229,31 +223,6 @@ namespace Invenco.View
             
         }
 
-       
-
-        //private void AddMarker()
-        //{
-        //    double latitude = Maps.Position.Lat;
-        //    double longitude = Maps.Position.Lng;
-        //    string name = "Маркер";
-
-        //    string query = "INSERT INTO Markers (Latitude, Longitude, Name) VALUES (@Latitude, @Longitude, @Name)";
-
-        //    using (SqlConnection connection = new SqlConnection(MapsEntity.connectionString))
-        //    {
-        //        connection.Open();
-
-        //        SqlCommand command = new SqlCommand(query, connection);
-        //        command.Parameters.AddWithValue("MarkerID", ConnectEntity.CountMarkers);
-        //        command.Parameters.AddWithValue("Latitude", latitude);
-        //        command.Parameters.AddWithValue("Longitude", longitude);
-        //        command.Parameters.AddWithValue("Name", name);
-
-        //        command.ExecuteNonQuery();
-        //    }
-
-        //}
-
         private void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
 
@@ -269,17 +238,11 @@ namespace Invenco.View
                     var historyInvertory = ConnectEntity.db.Invertarization.FirstOrDefault(IN => IN.MarkersID == MarkerID);
 
 
-                    // Nullable<int> со значением null
-
-                    
-
-
-
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
 
-                        // Удаляем маркер из таблицы Markers
+                       
                         string deleteMarkerQuery = "DELETE FROM Markers WHERE MarkerID = @MarkerID";
                         using (SqlCommand command = new SqlCommand(deleteMarkerQuery, connection))
                         {
@@ -296,8 +259,6 @@ namespace Invenco.View
                         }
 
 
-
-
                         string InsertHistoryMarker = "INSERT INTO HistoryMarker (HistoryMarkerID, History_Latitude, History_Longitude, History_Name) VALUES (@HistoryMarkerID, @HistoryLatitude, @History_Longitude, @History_Name)";
 
                         using (SqlCommand InsertCommand = new SqlCommand(InsertHistoryMarker, connection))
@@ -311,8 +272,6 @@ namespace Invenco.View
                         }
 
 
-
-
                         string InsertHistoryInvertarization = "INSERT INTO Inventory_History (History_InventoryID, HistoryMarkerID, Name, Category, StartDate, cabinet, EndDate, StatusName, Image_invertarization) VALUES (@History_InventoryID, @HistoryMarkerID, @Name, @Category, @StartDate, @cabinet, @EndDate, @StatusName, @Image_invertarization)";
 
                         using (SqlCommand InsertInvertory = new SqlCommand(InsertHistoryInvertarization, connection))
@@ -324,7 +283,7 @@ namespace Invenco.View
                             InsertInvertory.Parameters.AddWithValue("@StartDate", historyInvertory.StartDate);
                             InsertInvertory.Parameters.AddWithValue("@cabinet", historyInvertory.cabinet);
                             InsertInvertory.Parameters.AddWithValue("@EndDate", historyInvertory.EndDate);
-                            InsertInvertory.Parameters.AddWithValue("@StatusName", historyInvertory.StatusName);
+                            InsertInvertory.Parameters.AddWithValue("@StatusName", historyInvertory.StatusName="Списан");
                             InsertInvertory.Parameters.AddWithValue("@Image_invertarization", historyInvertory.Image_Invertarization);
                             InsertInvertory.ExecuteNonQuery();
 
@@ -334,9 +293,6 @@ namespace Invenco.View
                         connection.Close();
                     }
                     System.Windows.MessageBox.Show("Маркер и связанные с ним записи удалены.", "Удаление");
-
-
-
                     LoadMarkers();
 
                 }
@@ -347,9 +303,11 @@ namespace Invenco.View
 
         }
 
-       
-
-
+        private void Back_Left_chefron_BT_Click(object sender, RoutedEventArgs e)
+        {
+            new Inventory_tools(ConnectEntity.person_Data).Show();
+            Hide();
+        }
     }
 
 
